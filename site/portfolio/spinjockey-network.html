@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpinJockey Network: Film Industry Content Management Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about/presentation.html">About</a>
+            <a href="index.html">Portfolio</a>
+            <a href="../research/index.html">Research</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </header>
+    <div class="header">
+        <h1>SpinJockey Network</h1>
+        <p>Professional Content Management Platform for Film Industry</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Develop a comprehensive content management platform specifically designed for independent filmmakers and creative studios. The platform enables project management, collaboration, and content distribution with industry-specific workflows and multi-tier access control.</p>
+        
+        <p><strong>Innovation:</strong> Built on Rails 8.0.2 with modern Redis-free architecture using Solid Queue, Solid Cache, and Solid Cable, demonstrating cutting-edge Rails development practices for professional film industry applications.</p>
+        
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">5</div>
+                <div class="metric-label">User Role Tiers</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">7</div>
+                <div class="metric-label">Content Types</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Rails 8</div>
+                <div class="metric-label">Latest Framework</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Redis-Free</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>Platform Architecture</h2>
+        <div class="svg-container">
+        <svg viewBox="0 0 1000 600" style="width: 1000px; height: 800px;">
+            <!-- Background -->
+            <rect width="1000" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+            
+            <!-- Frontend Layer -->
+            <rect x="100" y="80" width="600" height="80" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="110" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#1976d2">Frontend Layer</text>
+            <text x="400" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Stimulus + Turbo (Hotwire) | Responsive Cinema-themed Design</text>
+            
+            <!-- Rails Application Layer -->
+            <rect x="100" y="200" width="600" height="120" fill="#ffebee" stroke="#cc0000" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="230" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#cc0000">Ruby on Rails 8.0.2 Application</text>
+            
+            <!-- Rails Components -->
+            <rect x="120" y="250" width="130" height="50" fill="#ffcdd2" stroke="#cc0000" stroke-width="1" rx="5" ry="5"/>
+            <text x="185" y="270" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Controllers</text>
+            <text x="185" y="285" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Admin + Public</text>
+            
+            <rect x="270" y="250" width="130" height="50" fill="#ffcdd2" stroke="#cc0000" stroke-width="1" rx="5" ry="5"/>
+            <text x="335" y="270" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Models</text>
+            <text x="335" y="285" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">User + Project + Content</text>
+            
+            <rect x="420" y="250" width="130" height="50" fill="#ffcdd2" stroke="#cc0000" stroke-width="1" rx="5" ry="5"/>
+            <text x="485" y="270" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Views</text>
+            <text x="485" y="285" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Admin + Public UI</text>
+            
+            <rect x="570" y="250" width="110" height="50" fill="#ffcdd2" stroke="#cc0000" stroke-width="1" rx="5" ry="5"/>
+            <text x="625" y="270" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Mailers</text>
+            <text x="625" y="285" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Notifications</text>
+            
+            <!-- Modern Rails Stack -->
+            <rect x="100" y="350" width="600" height="80" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="380" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#8e24aa">Modern Rails 8 Stack (Redis-Free)</text>
+            
+            <rect x="130" y="395" width="130" height="25" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="195" y="412" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Solid Queue</text>
+            
+            <rect x="280" y="395" width="130" height="25" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="345" y="412" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Solid Cache</text>
+            
+            <rect x="430" y="395" width="130" height="25" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="495" y="412" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Solid Cable</text>
+            
+            <rect x="580" y="395" width="90" height="25" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="625" y="412" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Thruster</text>
+            
+            <!-- Database Layer -->
+            <rect x="100" y="460" width="600" height="80" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="490" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#388e3c">PostgreSQL 15 Database</text>
+            <text x="400" y="515" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Users | Projects | Content Items | Analytics | Migrations</text>
+            
+            <!-- Connection Lines -->
+            <line x1="400" y1="160" x2="400" y2="200" stroke="#666" stroke-width="2"/>
+            <polygon points="400,200 395,190 405,190" fill="#666"/>
+            
+            <line x1="400" y1="320" x2="400" y2="350" stroke="#666" stroke-width="2"/>
+            <polygon points="400,350 395,340 405,340" fill="#666"/>
+            
+            <line x1="400" y1="430" x2="400" y2="460" stroke="#666" stroke-width="2"/>
+            <polygon points="400,460 395,450 405,450" fill="#666"/>
+            
+            <!-- User Roles Side Panel -->
+            <rect x="720" y="350" width="200" height="200" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5" ry="5"/>
+            <text x="820" y="370" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Multi-Tier Access</text>
+
+            <rect x="740" y="380" width="140" height="20" fill="#FFD500" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="810" y="394" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Admin</text>
+            <rect x="740" y="410" width="140" height="20" fill="#FFD500" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="810" y="422" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Collaborator</text>
+            <rect x="740" y="440" width="140" height="20" fill="#FFD500" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="810" y="454" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Premium</text>
+            <rect x="740" y="470" width="140" height="20" fill="#FFD500" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="810" y="482" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Registered</text>
+            <rect x="740" y="500" width="140" height="20" fill="#FFD500" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="810" y="512" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Guest</text>
+
+            <!-- Deployment Side Panel -->
+            <rect x="720" y="120" width="160" height="200" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5" ry="5"/>
+            <!-- Panel Title -->
+            <text x="800" y="140" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">Cloud Deployment</text>
+
+            <!-- Docker -->
+            <rect x="730" y="160" width="140" height="30" fill="#b3e5fc" stroke="#1976d2" stroke-width="1" rx="3" ry="3"/>
+            <text x="800" y="180" font-family="Arial" font-size="12" text-anchor="middle" fill="#333" >Docker</text>
+
+            <!-- Render -->
+            <rect x="730" y="200" width="140" height="30" fill="#b3e5fc" stroke="#1976d2" stroke-width="1" rx="3" ry="3"/>
+            <text x="800" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#333" >Render</text>
+
+            <!-- CDN -->
+            <rect x="730" y="240" width="140" height="30" fill="#b3e5fc" stroke="#1976d2" stroke-width="1" rx="3" ry="3"/>
+            <text x="800" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">CDN</text>
+
+            <!-- SSL -->
+            <rect x="730" y="280" width="140" height="30" fill="#b3e5fc" stroke="#1976d2" stroke-width="1" rx="3" ry="3"/>
+            <text x="800" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">SSL</text>
+        </svg>
+        </div>
+    </div>
+
+    <div class="user-roles">
+        <h2>🎭 Multi-Tier User System</h2>
+        <p><strong>Role-Based Access Control:</strong> Designed specifically for film industry workflows with granular permissions for different types of collaborators and content access levels.</p>
+        
+        <div class="role-hierarchy">
+            <div class="role-card">
+                <h4>👑 Admin</h4>
+                <p>Full platform management and analytics access</p>
+            </div>
+            <div class="role-card">
+                <h4>🎬 Collaborator</h4>
+                <p>Team member access to production materials</p>
+            </div>
+            <div class="role-card">
+                <h4>⭐ Premium</h4>
+                <p>Access to premium content and advanced features</p>
+            </div>
+            <div class="role-card">
+                <h4>📝 Registered</h4>
+                <p>Member access to registered content</p>
+            </div>
+            <div class="role-card">
+                <h4>👀 Guest</h4>
+                <p>Browse public content only</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-section auth-feature">
+            <h3>🔐 Authentication & User Management</h3>
+            <ul>
+                <li><strong>Multi-tier User System:</strong> 5 distinct user roles with hierarchical permissions</li>
+                <li><strong>Secure Authentication:</strong> Email confirmation and password reset</li>
+                <li><strong>Role-based Access Control:</strong> Granular content and project permissions</li>
+                <li><strong>User Analytics:</strong> Track engagement and consumption patterns</li>
+                <li><strong>Session Management:</strong> Secure user sessions with CSRF protection</li>
+            </ul>
+        </div>
+        
+        <div class="feature-section content-feature">
+            <h3>📁 Content Management System</h3>
+            <ul>
+                <li><strong>Project Organization:</strong> Manage multiple film projects with metadata</li>
+                <li><strong>Content Upload:</strong> Support for scripts, storyboards, character guides</li>
+                <li><strong>Flexible Storage:</strong> Both file uploads and direct HTML editing</li>
+                <li><strong>Access Control:</strong> Configure content visibility by user role</li>
+                <li><strong>Content Analytics:</strong> Track views and engagement metrics</li>
+            </ul>
+        </div>
+        
+        <div class="feature-section admin-feature">
+            <h3>🛡️ Administrative Interface</h3>
+            <ul>
+                <li><strong>Comprehensive Dashboard:</strong> System overview with statistics</li>
+                <li><strong>Project Management:</strong> Create, edit, and manage project status</li>
+                <li><strong>User Management:</strong> Search, filter, and manage user roles</li>
+                <li><strong>Content Organization:</strong> Upload and organize production materials</li>
+                <li><strong>Analytics & Reporting:</strong> View counts and system health</li>
+            </ul>
+        </div>
+        
+        <div class="feature-section analytics-feature">
+            <h3>📊 Analytics & Tracking</h3>
+            <ul>
+                <li><strong>Content Engagement:</strong> Track views and access patterns</li>
+                <li><strong>User Activity:</strong> Monitor content consumption behavior</li>
+                <li><strong>System Health:</strong> Real-time platform statistics</li>
+                <li><strong>Access Audit:</strong> Complete logging of content access</li>
+                <li><strong>Performance Metrics:</strong> User engagement analytics</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-types">
+        <h2>🎯 Film Industry Content Types</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div>
+                <h4>📜 Production Documents</h4>
+                <ul>
+                    <li><strong>Scripts:</strong> Screenplays and revisions</li>
+                    <li><strong>Storyboards:</strong> Visual production planning</li>
+                    <li><strong>Character Development:</strong> Guides and profiles</li>
+                    <li><strong>Production Notes:</strong> Behind-the-scenes documentation</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>💼 Business Materials</h4>
+                <ul>
+                    <li><strong>Marketing Materials:</strong> Promotional content and strategies</li>
+                    <li><strong>Budget Documents:</strong> Financial planning materials</li>
+                    <li><strong>Contracts:</strong> Legal and business documents</li>
+                    <li><strong>Project Tracking:</strong> Development through Archive phases</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <div class="tech-category rails-backend">
+            <h3>🚀 Ruby on Rails 8.0.2</h3>
+            <ul>
+                <li><strong>Modern Rails Stack:</strong> Latest Rails with cutting-edge features</li>
+                <li><strong>Solid Queue:</strong> Background jobs without Redis dependency</li>
+                <li><strong>Solid Cache:</strong> Caching system without Redis</li>
+                <li><strong>Solid Cable:</strong> WebSockets without Redis</li>
+                <li><strong>Thruster:</strong> HTTP caching and compression</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category frontend-tech">
+            <h3>🎨 Frontend Technologies</h3>
+            <ul>
+                <li><strong>Stimulus & Turbo:</strong> Hotwire for reactive interfaces</li>
+                <li><strong>Custom CSS:</strong> Hand-crafted responsive design</li>
+                <li><strong>Cinema-themed Design:</strong> Professional film industry styling</li>
+                <li><strong>Mobile-first:</strong> Optimized for all screen sizes</li>
+                <li><strong>Importmap:</strong> Modern JavaScript without bundling</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category security-tech">
+            <h3>🔒 Security & Authentication</h3>
+            <ul>
+                <li><strong>BCrypt:</strong> Secure password hashing</li>
+                <li><strong>Custom Authentication:</strong> Built-in Rails authentication</li>
+                <li><strong>CSRF Protection:</strong> Built-in Rails security features</li>
+                <li><strong>Content Sanitization:</strong> XSS protection</li>
+                <li><strong>SQL Injection Prevention:</strong> Parameterized queries</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category deployment-tech">
+            <h3>☁️ Infrastructure & Deployment</h3>
+            <ul>
+                <li><strong>Docker:</strong> Containerized deployment</li>
+                <li><strong>Render Platform:</strong> Cloud hosting with auto-deployment</li>
+                <li><strong>PostgreSQL 15:</strong> Robust, scalable database</li>
+                <li><strong>Global CDN:</strong> Fast loading worldwide</li>
+                <li><strong>SSL Enforcement:</strong> Production security</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="implementation-highlights">
+        <h2>🏗️ Implementation Highlights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>🎬 Industry-Specific Design</h4>
+                <ul>
+                    <li>Cinema-themed responsive design optimized for film professionals</li>
+                    <li>Role-based UI that adapts to user permissions dynamically</li>
+                    <li>Project workflow designed for film production lifecycles</li>
+                    <li>Content organization matching film industry standards</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>⚡ Modern Rails Architecture</h4>
+                <ul>
+                    <li>Rails 8.0.2 with Redis-free Solid* stack implementation</li>
+                    <li>Background job processing with Solid Queue</li>
+                    <li>WebSocket support through Solid Cable</li>
+                    <li>Advanced caching with Solid Cache</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>🔒 Enterprise Security</h4>
+                <ul>
+                    <li>Multi-tier role-based access control system</li>
+                    <li>Comprehensive audit logging for content access</li>
+                    <li>Secure file upload and content sanitization</li>
+                    <li>Production-ready security headers and SSL enforcement</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>📈 Analytics & Performance</h4>
+                <ul>
+                    <li>Real-time user engagement and content consumption tracking</li>
+                    <li>System health monitoring with performance metrics</li>
+                    <li>Database optimization with proper indexing</li>
+                    <li>Global CDN integration for fast content delivery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-impact">
+        <h2>🎯 Project Impact</h2>
+        <p><strong>Professional film industry platform</strong> enabling independent filmmakers and creative studios to manage projects, collaborate effectively, and distribute content with enterprise-grade security and analytics. Built with cutting-edge Rails 8.0 architecture for optimal performance and maintainability.</p>
+        
+        <p><strong>Technical Innovation:</strong> Successfully implemented Redis-free Rails 8.0 stack with Solid Queue, Solid Cache, and Solid Cable, demonstrating modern Rails development practices while delivering industry-specific functionality for film production workflows.</p>
+    </div>
+</body>
+</html>

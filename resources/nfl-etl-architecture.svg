@@ -1,0 +1,107 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">NFL Stats ETL Pipeline Architecture</text>
+  
+  <!-- Airflow DAG Container -->
+  <rect x="50" y="70" width="700" height="480" fill="#f5f5f5" stroke="#616161" stroke-width="2" rx="10" ry="10"/>
+  <text x="400" y="90" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#616161">Apache Airflow DAG</text>
+  
+  <!-- Data Source -->
+  <rect x="100" y="130" width="140" height="60" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="8" ry="8"/>
+  <text x="170" y="155" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">NFL.com</text>
+  <text x="170" y="175" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Data Source</text>
+  
+  <!-- Year Parameter Selection -->
+  <rect x="300" y="120" width="140" height="40" fill="#e8eaf6" stroke="#3949ab" stroke-width="2" rx="8" ry="8"/>
+  <text x="370" y="145" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Year Parameter</text>
+  <text x="370" y="165" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">(2000-2024)</text>
+  
+  <!-- Extract Tasks -->
+  <rect x="100" y="230" width="600" height="70" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="8" ry="8"/>
+  <text x="400" y="255" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#388e3c">Extract</text>
+  
+  <!-- Extract Sub-tasks -->
+  <rect x="120" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+  <text x="170" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Passing</text>
+  
+  <rect x="230" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+  <text x="280" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Rushing</text>
+  
+  <rect x="340" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+  <text x="390" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Receiving</text>
+  
+  <rect x="450" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+  <text x="500" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Defense</text>
+  
+  <rect x="560" y="270" width="120" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+  <text x="620" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Player Data Collection</text>
+  
+  <!-- Transform Tasks -->
+  <rect x="100" y="340" width="600" height="70" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
+  <text x="400" y="365" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#f57c00">Transform</text>
+  
+  <!-- Transform Sub-tasks -->
+  <rect x="120" y="380" width="100" height="25" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+  <text x="170" y="397" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Data Cleaning</text>
+  
+  <rect x="230" y="380" width="100" height="25" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+  <text x="280" y="397" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Normalization</text>
+  
+  <rect x="340" y="380" width="100" height="25" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+  <text x="390" y="397" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Data Aggregation</text>
+  
+  <rect x="450" y="380" width="100" height="25" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+  <text x="500" y="397" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Feature Creation</text>
+  
+  <rect x="560" y="380" width="120" height="25" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+  <text x="620" y="397" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">ML Model Preparation</text>
+  
+  <!-- Load Tasks -->
+  <rect x="100" y="450" width="600" height="70" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" rx="8" ry="8"/>
+  <text x="400" y="475" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#0288d1">Load</text>
+  
+  <!-- Load Sub-tasks -->
+  <rect x="180" y="490" width="120" height="25" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+  <text x="240" y="507" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">AWS S3 Storage</text>
+  
+  <rect x="340" y="490" width="120" height="25" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+  <text x="400" y="507" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Model Evaluation</text>
+  
+  <rect x="500" y="490" width="120" height="25" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+  <text x="560" y="507" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Report Generation</text>
+  
+  <!-- Connection Lines -->
+  <line x1="170" y1="190" x2="170" y2="230" stroke="#333" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="170,230 165,220 175,220" fill="#333"/>
+  
+  <line x1="370" y1="160" x2="400" y2="230" stroke="#333" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="400,230 392,222 398,218" fill="#333"/>
+  
+  <line x1="400" y1="300" x2="400" y2="340" stroke="#333" stroke-width="1.5"/>
+  <polygon points="400,340 395,330 405,330" fill="#333"/>
+  
+  <line x1="400" y1="410" x2="400" y2="450" stroke="#333" stroke-width="1.5"/>
+  <polygon points="400,450 395,440 405,440" fill="#333"/>
+  
+  <!-- CI/CD and Testing -->
+  <rect x="620" y="140" width="100" height="80" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2" rx="8" ry="8"/>
+  <text x="670" y="165" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#9c27b0">CI/CD</text>
+  <text x="670" y="185" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">GitHub Actions</text>
+  <text x="670" y="200" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Test & Deploy</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="560" width="15" height="15" fill="#e8f5e9" stroke="#388e3c" stroke-width="1"/>
+  <text x="75" y="572" font-family="Arial" font-size="12" fill="#333">Extract</text>
+  
+  <rect x="150" y="560" width="15" height="15" fill="#fff3e0" stroke="#f57c00" stroke-width="1"/>
+  <text x="175" y="572" font-family="Arial" font-size="12" fill="#333">Transform</text>
+  
+  <rect x="250" y="560" width="15" height="15" fill="#e1f5fe" stroke="#0288d1" stroke-width="1"/>
+  <text x="275" y="572" font-family="Arial" font-size="12" fill="#333">Load</text>
+  
+  <rect x="350" y="560" width="15" height="15" fill="#f3e5f5" stroke="#9c27b0" stroke-width="1"/>
+  <text x="375" y="572" font-family="Arial" font-size="12" fill="#333">CI/CD</text>
+</svg>

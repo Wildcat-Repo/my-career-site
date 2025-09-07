@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Consulting Internship Preparation Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-left: 5px solid #1976d2;
+            margin: 0;
+        }
+
+        .overview h2 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .timeline-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-marker {
+            background: #1976d2;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+        }
+
+        .timeline-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .phase {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #1976d2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .phase:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .phase h2 {
+            color: #1976d2;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+        }
+
+        .week {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 3px solid #4caf50;
+        }
+
+        .week h3 {
+            color: #2e7d32;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .week h4 {
+            color: #424242;
+            font-size: 1.1em;
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin: 8px 0;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #ff9800;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checklist li:hover {
+            background: #fff3e0;
+            transform: translateX(5px);
+        }
+
+        .checklist li::before {
+            content: '☐';
+            margin-right: 10px;
+            font-size: 1.2em;
+            color: #ff9800;
+        }
+
+        .checklist li.completed::before {
+            content: '☑';
+            color: #4caf50;
+        }
+
+        .checklist li.completed {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .milestones {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .milestones h3 {
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .milestone {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .milestone strong {
+            color: #e65100;
+        }
+
+        .success-metrics {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .success-metrics h3 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-category {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid #4caf50;
+        }
+
+        .resources {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .resources h3 {
+            color: #7b1fa2;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-category {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid #9c27b0;
+        }
+
+        .resource-category h4 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .resource-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-category li {
+            padding: 5px 0;
+            color: #424242;
+        }
+
+        .resource-category li::before {
+            content: '🔗';
+            margin-right: 8px;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .progress-tracker h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .timeline-sidebar {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .timeline-marker {
+                min-width: 60px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .phase {
+                padding: 20px;
+            }
+
+            .milestone-grid,
+            .metrics-grid,
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-tracker {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 20px 0;
+            }
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(25, 118, 210, 0.4);
+        }
+
+        @media print {
+            .progress-tracker,
+            .print-button {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FTI Consulting Internship Preparation Plan</h1>
+            <div class="subtitle">Strategic 12-Week Roadmap for Technology Segment Success</div>
+        </div>
+
+        <div class="overview">
+            <h2>📋 Executive Summary</h2>
+            <p>This comprehensive 12-week preparation plan positions me strategically for FTI Consulting's Technology segment internship program. The plan integrates deep company research, targeted skill development, portfolio enhancement, and interview preparation while building valuable professional relationships.</p>
+            
+            <p><strong>Key Objectives:</strong> Demonstrate technical excellence in cybersecurity and data analytics, showcase business acumen through project portfolio, and establish meaningful connections within FTI's Technology division.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-sidebar">
+                <div class="timeline-marker">Phase 1</div>
+                <div class="timeline-marker">Phase 2</div>
+                <div class="timeline-marker">Phase 3</div>
+                <div class="timeline-marker">Phase 4</div>
+                <div class="timeline-marker">Phase 5</div>
+            </div>
+
+            <div class="timeline-content">
+                <div class="phase">
+                    <h2><span class="icon">🔍</span>Phase 1: Research & Understanding (Weeks 1-2)</h2>
+                    
+                    <div class="week">
+                        <h3><span class="icon">📚</span>Week 1: Deep Dive into FTI Consulting</h3>
+                        
+                        <h4>Day 1-2: Company Research</h4>
+                        <ul class="checklist">
+                            <li>Read FTI's latest annual report and quarterly earnings calls</li>
+                            <li>Study their 5 business segments in detail, focusing on Technology</li>
+                            <li>Research FTI's major case studies and recent wins</li>
+                            <li>Follow FTI Consulting on LinkedIn and set up Google Alerts</li>
+                        </ul>
+
+                        <h4>Day 3-4: Technology Segment Focus</h4>
+                        <ul class="checklist">
+                            <li>Research FTI's Technology leadership team on LinkedIn</li>
+                            <li>Study their cybersecurity, e-discovery, and data analytics services</li>
+                            <li>Read recent thought leadership articles from FTI Technology experts</li>
+                            <li>Identify specific tools and technologies FTI uses (Relativity, Nuix, etc.)</li>
+                        </ul>
+
+                        <h4>Day 5-7: Industry Understanding</h4>
+                        <ul class="checklist">
+                            <li>Research the consulting industry landscape (competitors like Deloitte, EY)</li>
+                            <li>Understand current trends in legal technology and digital forensics</li>
+                            <li>Read about recent high-profile cases requiring technology consulting</li>
+                            <li>Study regulatory environment (GDPR, SOX, etc.) affecting FTI's work</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🎯</span>Week 2: Application Strategy</h3>
+                        
+                        <h4>Day 1-3: Application Materials Research</h4>
+                        <ul class="checklist">
+                            <li>Find FTI's internship postings and requirements</li>
+                            <li>Research application deadlines and process timeline</li>
+                            <li>Identify FTI recruiters and hiring managers on LinkedIn</li>
+                            <li>Study successful intern profiles and testimonials</li>
+                        </ul>
+
+                        <h4>Day 4-7: Networking Foundation</h4>
+                        <ul class="checklist">
+                            <li>Create list of FTI employees to connect with</li>
+                            <li>Join relevant professional groups (cybersecurity, digital forensics)</li>
+                            <li>Research FTI's campus recruiting events and information sessions</li>
+                            <li>Set up informational interview requests</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="phase">
+                    <h2><span class="icon">⚡</span>Phase 2: Skill Development & Portfolio Enhancement (Weeks 3-6)</h2>
+                    
+                    <div class="week">
+                        <h3><span class="icon">📊</span>Week 3: Technical Skills Assessment</h3>
+                        
+                        <h4>Day 1-2: Skills Gap Analysis</h4>
+                        <ul class="checklist">
+                            <li>Compare current skills against FTI Technology job requirements</li>
+                            <li>Identify priority areas for improvement</li>
+                            <li>Create learning plan for key technologies</li>
+                        </ul>
+
+                        <h4>Day 3-7: Core Skills Development</h4>
+                        <ul class="checklist">
+                            <li><strong>Digital Forensics:</strong> Complete online course (SANS, Cybrary)</li>
+                            <li><strong>E-Discovery:</strong> Learn about Relativity platform (free training)</li>
+                            <li><strong>Data Analytics:</strong> Advanced Python for forensics applications</li>
+                            <li><strong>Cloud Security:</strong> AWS/Azure security fundamentals</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🚀</span>Week 4: Security Project Deep Dive</h3>
+                        <ul class="checklist">
+                            <li>Enhance phishing detection project with additional features</li>
+                            <li>Add forensic analysis capabilities to demonstrate investigation skills</li>
+                            <li>Create detailed documentation showing business impact</li>
+                            <li>Prepare technical presentation materials</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">💼</span>Week 5: Portfolio Projects</h3>
+                        <ul class="checklist">
+                            <li>Document all projects with business impact metrics</li>
+                            <li>Create GitHub portfolio with professional README files</li>
+                            <li>Build simple portfolio website showcasing FTI-relevant work</li>
+                            <li>Prepare project demonstration videos</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🏆</span>Week 6: Industry Certifications</h3>
+                        <ul class="checklist">
+                            <li>Study for CompTIA Security+ (aligns with CYB 300 course)</li>
+                            <li>Complete Google Cybersecurity Certificate modules</li>
+                            <li>Pursue vendor-specific training (Microsoft Security, AWS Security)</li>
+                            <li>Research Professional Scrum Master certification completion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="phase">
+                    <h2><span class="icon">📝</span>Phase 3: Application Materials Creation (Weeks 7-8)</h2>
+                    
+                    <div class="week">
+                        <h3><span class="icon">📄</span>Week 7: Resume & Cover Letter</h3>
+                        
+                        <h4>Day 1-3: Resume Development</h4>
+                        <ul class="checklist">
+                            <li>Create FTI-specific resume highlighting relevant projects</li>
+                            <li>Quantify achievements with business metrics</li>
+                            <li>Emphasize technology skills relevant to consulting</li>
+                            <li>Get resume reviewed by career services and professionals</li>
+                        </ul>
+
+                        <h4>Day 4-7: Cover Letter & Application Essays</h4>
+                        <ul class="checklist">
+                            <li>Write compelling cover letter connecting background to FTI's needs</li>
+                            <li>Prepare responses to common application questions</li>
+                            <li>Draft "Why FTI?" statement demonstrating company knowledge</li>
+                            <li>Have materials reviewed and edited</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">✅</span>Week 8: Application Submission Preparation</h3>
+                        
+                        <h4>Day 1-3: Final Application Package</h4>
+                        <ul class="checklist">
+                            <li>Complete all application forms and requirements</li>
+                            <li>Prepare portfolio of work samples</li>
+                            <li>Gather references and recommendation letters</li>
+                            <li>Create backup versions of all materials</li>
+                        </ul>
+
+                        <h4>Day 4-7: Quality Assurance</h4>
+                        <ul class="checklist">
+                            <li>Proofread all materials multiple times</li>
+                            <li>Test any links or online portfolios</li>
+                            <li>Prepare submission strategy and timeline</li>
+                            <li>Submit applications before deadlines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="phase">
+                    <h2><span class="icon">🎤</span>Phase 4: Interview Preparation (Weeks 9-12)</h2>
+                    
+                    <div class="week">
+                        <h3><span class="icon">💻</span>Week 9: Core Technical Knowledge</h3>
+                        <ul class="checklist">
+                            <li>Review fundamental CS concepts (data structures, algorithms)</li>
+                            <li>Practice coding problems relevant to data analysis</li>
+                            <li>Study cybersecurity frameworks and methodologies</li>
+                            <li>Prepare to discuss projects in technical detail</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🔧</span>Week 10: Consulting-Specific Technical Skills</h3>
+                        <ul class="checklist">
+                            <li>Learn about digital forensics investigation methodologies</li>
+                            <li>Understand e-discovery workflows and challenges</li>
+                            <li>Study data analytics in legal contexts</li>
+                            <li>Practice explaining technical concepts to non-technical audiences</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">📋</span>Week 11: Case Study & Behavioral Prep</h3>
+                        
+                        <h4>Day 1-3: Case Study Practice</h4>
+                        <ul class="checklist">
+                            <li>Practice consulting case studies (technology-focused)</li>
+                            <li>Develop structured approach to problem-solving</li>
+                            <li>Practice presenting solutions clearly and concisely</li>
+                            <li>Study FTI's case study methodology</li>
+                        </ul>
+
+                        <h4>Day 4-7: Behavioral Interviews</h4>
+                        <ul class="checklist">
+                            <li>Prepare STAR method responses for common questions</li>
+                            <li>Develop stories highlighting leadership, teamwork, and problem-solving</li>
+                            <li>Practice questions about handling pressure and tight deadlines</li>
+                            <li>Prepare examples of client-facing or stakeholder management experience</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🎯</span>Week 12: Final Interview Preparation</h3>
+                        
+                        <h4>Day 1-3: Mock Interviews</h4>
+                        <ul class="checklist">
+                            <li>Conduct mock technical interviews</li>
+                            <li>Practice case study presentations</li>
+                            <li>Get feedback from mentors or career services</li>
+                            <li>Refine answers based on feedback</li>
+                        </ul>
+
+                        <h4>Day 4-7: Interview Logistics</h4>
+                        <ul class="checklist">
+                            <li>Research interview format and expectations</li>
+                            <li>Prepare thoughtful questions about FTI's culture and opportunities</li>
+                            <li>Plan interview day logistics (travel, timing, materials)</li>
+                            <li>Finalize presentation materials and portfolio</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="phase">
+                    <h2><span class="icon">🤝</span>Phase 5: Networking & Relationship Building (Ongoing)</h2>
+                    
+                    <div class="week">
+                        <h3><span class="icon">📅</span>Weekly Networking Tasks</h3>
+                        <ul class="checklist">
+                            <li>Send 3-5 LinkedIn connection requests to FTI employees</li>
+                            <li>Comment thoughtfully on FTI's LinkedIn posts</li>
+                            <li>Share relevant industry articles with insights</li>
+                            <li>Attend virtual industry events where FTI might be present</li>
+                        </ul>
+                    </div>
+
+                    <div class="week">
+                        <h3><span class="icon">🌟</span>Monthly Deep Networking</h3>
+                        <ul class="checklist">
+                            <li>Request informational interviews with FTI Technology professionals</li>
+                            <li>Attend cybersecurity or legal technology conferences</li>
+                            <li>Participate in relevant webinars and panel discussions</li>
+                            <li>Follow up with existing connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="milestones">
+            <h3>🎯 Key Milestones & Critical Deadlines</h3>
+            <div class="milestone-grid">
+                <div class="milestone">
+                    <strong>Week 2:</strong> Identify FTI internship application deadlines
+                </div>
+                <div class="milestone">
+                    <strong>Week 4:</strong> Complete skills gap analysis and learning plan
+                </div>
+                <div class="milestone">
+                    <strong>Week 6:</strong> Finish major project enhancements
+                </div>
+                <div class="milestone">
+                    <strong>Week 8:</strong> Submit all applications
+                </div>
+                <div class="milestone">
+                    <strong>Week 10:</strong> Complete technical interview preparation
+                </div>
+                <div class="milestone">
+                    <strong>Week 12:</strong> Ready for interviews
+                </div>
+            </div>
+        </div>
+
+        <div class="success-metrics">
+            <h3>📈 Success Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-category">
+                    <h4>Quantifiable Goals</h4>
+                    <ul class="checklist">
+                        <li>Connect with 20+ FTI employees on LinkedIn</li>
+                        <li>Complete 3+ relevant technical certifications</li>
+                        <li>Conduct 5+ informational interviews</li>
+                        <li>Enhance portfolio with 2+ FTI-relevant project features</li>
+                        <li>Achieve 90%+ confidence level in mock interviews</li>
+                    </ul>
+                </div>
+                <div class="metric-category">
+                    <h4>Quality Indicators</h4>
+                    <ul class="checklist">
+                        <li>Receive positive feedback on application materials</li>
+                        <li>Successfully demonstrate technical knowledge in practice interviews</li>
+                        <li>Build meaningful professional relationships with FTI employees</li>
+                        <li>Develop clear understanding of FTI's Technology segment needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="resources">
+            <h3>🔗 Resources & Tools</h3>
+            <div class="resource-grid">
+                <div class="resource-category">
+                    <h4>Learning Platforms</h4>
+                    <ul>
+                        <li>SANS Institute (cybersecurity training)</li>
+                        <li>Cybrary (free cybersecurity courses)</li>
+                        <li>Coursera (digital forensics specializations)</li>
+                        <li>Pluralsight (technology skills)</li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h4>Networking Platforms</h4>
+                    <ul>
+                        <li>LinkedIn (primary networking)</li>
+                        <li>ISACA local chapters</li>
+                        <li>Cybersecurity meetups</li>
+                        <li>University alumni networks</li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h4>Practice Platforms</h4>
+                    <ul>
+                        <li>LeetCode (technical coding practice)</li>
+                        <li>Case Interview platforms</li>
+                        <li>Toastmasters (presentation skills)</li>
+                        <li>University career services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-tracker">
+        <h4>📊 Progress Tracker</h4>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Complete</div>
+    </div>
+
+    <button class="print-button" onclick="window.print()">🖨️ Print Plan</button>
+
+    <script>
+        // Progress tracking functionality
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist li');
+            const completedTasks = document.querySelectorAll('.checklist li.completed');
+            const progress = (completedTasks.length / checkboxes.length) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress) + '% Complete';
+        }
+
+        // Toggle task completion
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI' && e.target.classList.contains('checklist')) {
+                e.target.classList.toggle('completed');
+                updateProgress();
+                
+                // Save progress to localStorage (if available)
+                try {
+                    const completedTasks = Array.from(document.querySelectorAll('.checklist li.completed'))
+                        .map(li => li.textContent);
+                    localStorage.setItem('ftiPlanProgress', JSON.stringify(completedTasks));
+                } catch (e) {
+                    // localStorage not available, continue without saving
+                }
+            }
+        });
+
+        // Load saved progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const savedProgress = localStorage.getItem('ftiPlanProgress');
+                if (savedProgress) {
+                    const completedTasks = JSON.parse(savedProgress);
+                    const allTasks = document.querySelectorAll('.checklist li');
+                    
+                    allTasks.forEach(task => {
+                        if (completedTasks.includes(task.textContent)) {
+                            task.classList.add('completed');
+                        }
+                    });
+                    
+                    updateProgress();
+                }
+            } catch (e) {
+                // localStorage not available or corrupted, start fresh
+            }
+        });
+
+        // Smooth scrolling for internal navigation
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all phases for scroll animations
+        document.querySelectorAll('.phase').forEach(phase => {
+            phase.style.opacity = '0';
+            phase.style.transform = 'translateY(20px)';
+            phase.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(phase);
+        });
+
+        // Add export to PDF functionality
+        function exportToPDF() {
+            // Hide interactive elements for cleaner PDF
+            const tracker = document.querySelector('.progress-tracker');
+            const button = document.querySelector('.print-button');
+            
+            tracker.style.display = 'none';
+            button.style.display = 'none';
+            
+            window.print();
+            
+            // Restore elements after print
+            setTimeout(() => {
+                tracker.style.display = 'block';
+                button.style.display = 'block';
+            }, 1000);
+        }
+
+        // Update print button to use export function
+        document.querySelector('.print-button').onclick = exportToPDF;
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P for print
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                exportToPDF();
+            }
+            
+            // Escape to clear all completed tasks (for demo purposes)
+            if (e.key === 'Escape' && e.shiftKey) {
+                const completedTasks = document.querySelectorAll('.checklist li.completed');
+                completedTasks.forEach(task => task.classList.remove('completed'));
+                updateProgress();
+                try {
+                    localStorage.removeItem('ftiPlanProgress');
+                } catch (e) {
+                    // localStorage not available
+                }
+            }
+        });
+
+        // Initialize progress on load
+        updateProgress();
+    </script>
+</body>
+</html>

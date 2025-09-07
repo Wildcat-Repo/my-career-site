@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Consulting Company Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.3s; }
+        .section:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tldr {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4caf50;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tldr h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .tldr h2::after {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #ff9800;
+        }
+
+        .timeline h3 {
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #ff9800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #e65100;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .timeline-event {
+            color: #424242;
+            line-height: 1.5;
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .segment-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .segment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .segment-card h4 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .segment-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .segment-card li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .segment-card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.8em;
+        }
+
+        .notable-cases {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #9c27b0;
+        }
+
+        .notable-cases h3 {
+            color: #7b1fa2;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .case-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #9c27b0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .case-title {
+            font-weight: bold;
+            color: #6a1b9a;
+            margin-bottom: 5px;
+        }
+
+        .case-description {
+            color: #424242;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section h2 {
+                font-size: 1.8em;
+            }
+            
+            .company-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FTI Consulting</h1>
+            <div class="subtitle">Company Overview & Background</div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="tldr">
+                    <h2>TL;DR: FTI Consulting Overview</h2>
+                    <p>FTI Consulting is a global business advisory firm founded in 1982 and headquartered in Washington, D.C., specializing in corporate finance and restructuring, economic consulting, forensic and litigation consulting, strategic communications, and technology consulting. With over 7,900 employees in 32 countries and $3.70 billion in revenue for 2024, it's one of the world's largest financial consulting firms.</p>
+                    
+                    <div class="company-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">1982</div>
+                            <div class="stat-label">Founded</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">7,900+</div>
+                            <div class="stat-label">Employees</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">32</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$3.70B</div>
+                            <div class="stat-label">2024 Revenue</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Business Segments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Company Background & History</h2>
+                
+                <p>FTI Consulting was originally founded as <strong>Forensic Technologies International</strong> in 1982 with the initial goal of helping courtroom staff and jury members interpret technological evidence through innovative computer models. The company has grown through strategic acquisitions, including purchasing PricewaterhouseCoopers' U.S. Business Recovery Services Division for $250 million in 2002 and acquiring KPMG's Dispute Advisory Services in 2003.</p>
+
+                <h3>Key Leadership</h3>
+                <p>Steven Gunby has served as President and CEO since 2014, and under his leadership, the firm has consistently been recognized by Forbes as one of America's Best Management Consulting Firms.</p>
+
+                <div class="timeline">
+                    <h3>🏛️ Historical Milestones</h3>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1982</div>
+                        <div class="timeline-event">Founded as Forensic Technologies International by Dan Luczak and Joseph Reynolds, focusing on helping courtroom staff interpret technological evidence</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1996</div>
+                        <div class="timeline-event">Went public on NASDAQ under symbol FTIC, raising $11.1 million</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1997</div>
+                        <div class="timeline-event">Expanded to Canada with acquisition of LWG</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1998-2005</div>
+                        <div class="timeline-event">Changed name to FTI Consulting, began trading on NYSE under FCN, acquired multiple consulting companies including PwC's Business Recovery Services and KPMG's Disputes Advisory Services</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-event">Provided essential technology for the Bush vs. Gore presidential dispute</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2002</div>
+                        <div class="timeline-event">Added over 1,000 employees to Forensic and Litigation Consulting division following Sarbanes-Oxley Act</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2006</div>
+                        <div class="timeline-event">Acquired London-based Financial Dynamics, establishing Strategic Communications Division</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2007</div>
+                        <div class="timeline-event">Expanded to Latin America and reported $1 billion in annual revenue for the first time</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2014</div>
+                        <div class="timeline-event">Steven H. Gunby named President and Chief Executive Officer</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-event">Had the largest restructuring business in the US as of January 2020</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-event">Achieved record revenues of $3.699 billion with over 8,300 employees in 34 countries</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Five Core Business Segments</h2>
+                
+                <p>FTI Consulting operates through five main business segments, each a leader in its own right:</p>
+                
+                <div class="segments-grid">
+                    <div class="segment-card">
+                        <h4>1. Corporate Finance & Restructuring</h4>
+                        <ul>
+                            <li>Business transformation and strategy</li>
+                            <li>Turnaround and restructuring services</li>
+                            <li>Transaction advisory</li>
+                            <li>Largest restructuring business in the US</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="segment-card">
+                        <h4>2. Forensic and Litigation Consulting</h4>
+                        <ul>
+                            <li>Multidisciplinary services across risk & investigations</li>
+                            <li>Construction, projects & assets</li>
+                            <li>Healthcare risk management</li>
+                            <li>Data & analytics solutions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="segment-card">
+                        <h4>3. Economic Consulting</h4>
+                        <ul>
+                            <li>Economic analysis and modeling</li>
+                            <li>Antitrust and competition matters</li>
+                            <li>Includes subsidiary Compass Lexecon</li>
+                            <li>Led Lexology Index for 15th consecutive year</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="segment-card">
+                        <h4>4. Technology</h4>
+                        <ul>
+                            <li>E-discovery and managed review</li>
+                            <li>Cybersecurity services</li>
+                            <li>Information governance and privacy</li>
+                            <li>AI-powered managed services</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="segment-card">
+                        <h4>5. Strategic Communications</h4>
+                        <ul>
+                            <li>Crisis communications</li>
+                            <li>Public relations and reputation management</li>
+                            <li>Acquired Financial Dynamics in 2006</li>
+                            <li>Global communications expertise</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="notable-cases">
+                    <h3>🏆 Notable High-Profile Engagements</h3>
+                    <p>FTI Consulting has been involved in many headline-making cases throughout its history:</p>
+                    
+                    <div class="cases-grid">
+                        <div class="case-item">
+                            <div class="case-title">Lehman Brothers Bankruptcy</div>
+                            <div class="case-description">Led restructuring efforts during one of the largest bankruptcies in U.S. history</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">General Motors Bankruptcy</div>
+                            <div class="case-description">Provided critical restructuring and turnaround services</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">Bernard Madoff Investigation</div>
+                            <div class="case-description">Helped track down ill-gotten gains in the massive fraud case</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">Bush v. Gore Dispute</div>
+                            <div class="case-description">Provided essential technology for the presidential election dispute</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">Ed Sheeran Copyright Defense</div>
+                            <div class="case-description">Litigation support for Grammy Award-winning artist's copyright case</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">Microsoft-Activision Merger</div>
+                            <div class="case-description">Expert testimony supporting history's largest tech merger</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">Wells Fargo Investigation</div>
+                            <div class="case-description">Forensic investigation leading to enterprise-wide reforms</div>
+                        </div>
+                        
+                        <div class="case-item">
+                            <div class="case-title">MLB Steroid Investigation</div>
+                            <div class="case-description">Technology segment played substantial role in investigation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Global Presence & Client Base</h2>
+                
+                <h3>Geographic Footprint</h3>
+                <p>More than 8,300 employees located in 34 countries and territories as of December 31, 2024, with offices in 84 cities across 31 countries.</p>
+                
+                <h3>Prestigious Client Base</h3>
+                <div class="company-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">98</div>
+                        <div class="stat-label">Top 100 Law Firms</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">83</div>
+                        <div class="stat-label">Fortune 100 Companies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">71</div>
+                        <div class="stat-label">Top 100 PE Firms</div>
+                    </div>
+                </div>
+                
+                <h3>What Sets FTI Apart</h3>
+                <p>FTI Consulting differentiates itself as a crisis and transformation specialist. The firm positions itself as "the leading global expert firm for organizations facing crisis and transformation," with teams that respond rapidly to dynamic and complex situations. Unlike traditional strategy consulting firms, FTI specializes in helping organizations during their most challenging moments, whether financial distress, legal disputes, regulatory investigations, or major transactions.</p>
+                
+                <p>The company's multidisciplinary approach, combining financial expertise, litigation support, technology solutions, and communications capabilities under one roof, makes it uniquely positioned to handle complex, multi-faceted business challenges that require coordinated expertise across multiple domains.</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="window.print()">🖨️ Print Overview</button>
+
+    <script>
+        // Add smooth scroll animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.stat-card, .segment-card, .case-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshare Application Architecture</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about/presentation.html">About</a>
+            <a href="index.html">Portfolio</a>
+            <a href="../research/index.html">Research</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </header>
+    <div class="header">
+        <h1>Bookshare Application</h1>
+        <p>Full-Stack Book Sharing Platform Architecture</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Design and implement a comprehensive full-stack application for book sharing and management within a community. The platform enables users to catalog personal libraries, manage borrowing/lending, and discover new reading material through community recommendations.</p>
+        
+        <p><strong>Architecture:</strong> Modern full-stack application with React frontend, FastAPI backend, and PostgreSQL database, featuring comprehensive CI/CD pipeline and multi-environment support.</p>
+        
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Main Applications</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">3</div>
+                <div class="metric-label">Environments</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">85+</div>
+                <div class="metric-label">Files & Components</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Test Coverage Goal</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>System Architecture</h2>
+        <svg viewBox="0 0 800 500" style="width: 100%; max-width: 800px; height: auto;">
+            <!-- Background -->
+            <rect width="800" height="500" fill="#f9f9f9" rx="10" ry="10"/>
+            
+            <!-- Frontend Layer -->
+            <rect x="150" y="80" width="500" height="100" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" rx="5" ry="5"/>
+            <text x="400" y="100" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#0288d1">Frontend (React + Vite)</text>
+            
+            <!-- Frontend Components -->
+            <rect x="180" y="120" width="100" height="40" fill="#bbdefb" stroke="#0288d1" stroke-width="1" rx="3" ry="3"/>
+            <text x="230" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Components</text>
+            
+            <rect x="300" y="120" width="100" height="40" fill="#bbdefb" stroke="#0288d1" stroke-width="1" rx="3" ry="3"/>
+            <text x="350" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Contexts</text>
+            
+            <rect x="420" y="120" width="100" height="40" fill="#bbdefb" stroke="#0288d1" stroke-width="1" rx="3" ry="3"/>
+            <text x="470" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Hooks</text>
+            
+            <rect x="540" y="120" width="80" height="40" fill="#bbdefb" stroke="#0288d1" stroke-width="1" rx="3" ry="3"/>
+            <text x="580" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Utils</text>
+            
+            <!-- API Layer -->
+            <rect x="150" y="220" width="500" height="100" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5" ry="5"/>
+            <text x="400" y="240" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#388e3c">Backend (FastAPI)</text>
+            
+            <!-- API Components -->
+            <rect x="180" y="260" width="100" height="40" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="230" y="285" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">API Routes</text>
+            
+            <rect x="300" y="260" width="100" height="40" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="350" y="285" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Auth</text>
+            
+            <rect x="420" y="260" width="100" height="40" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="470" y="285" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Schemas</text>
+            
+            <rect x="540" y="260" width="80" height="40" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="580" y="285" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Web</text>
+            
+            <!-- Database Layer -->
+            <rect x="150" y="360" width="500" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5" ry="5"/>
+            <text x="400" y="380" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#f57c00">Database (PostgreSQL)</text>
+            
+            <rect x="250" y="400" width="100" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="300" y="420" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Books</text>
+            
+            <rect x="450" y="400" width="100" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3" ry="3"/>
+            <text x="500" y="420" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Users</text>
+            
+            <!-- Connection Lines -->
+            <!-- Frontend to API -->
+            <line x1="400" y1="180" x2="400" y2="220" stroke="#666" stroke-width="2" stroke-dasharray="5,5"/>
+            <polygon points="400,220 395,210 405,210" fill="#666"/>
+            
+            <!-- API to Database -->
+            <line x1="400" y1="320" x2="400" y2="360" stroke="#666" stroke-width="2" stroke-dasharray="5,5"/>
+            <polygon points="400,360 395,350 405,350" fill="#666"/>
+            
+            <!-- Environment Support -->
+            <rect x="50" y="160" width="80" height="160" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2" rx="5" ry="5" transform="rotate(-90 50 240)"/>
+            <text x="50" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#9c27b0" transform="rotate(-90 50 240)">Environments</text>
+            
+            <text x="90" y="210" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Development</text>
+            <text x="90" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Staging</text>
+            <text x="90" y="270" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Production</text>
+            
+            <!-- CI/CD Pipeline -->
+            <rect x="670" y="160" width="80" height="160" fill="#e1bee7" stroke="#9c27b0" stroke-width="2" rx="5" ry="5" transform="rotate(90 670 240)"/>
+            <text x="670" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#9c27b0" transform="rotate(90 670 240)">CI/CD Pipeline</text>
+            
+            <text x="630" y="210" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Test</text>
+            <text x="630" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Build</text>
+            <text x="630" y="270" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Deploy</text>
+        </svg>
+    </div>
+
+    <div class="tech-stack">
+        <div class="tech-category frontend">
+            <h3>Frontend Technologies</h3>
+            <ul>
+                <li><strong>React:</strong> Modern UI component library</li>
+                <li><strong>Vite:</strong> Fast build tool and dev server</li>
+                <li><strong>TailwindCSS:</strong> Utility-first CSS framework</li>
+                <li><strong>React Router:</strong> Client-side routing</li>
+                <li><strong>Context API:</strong> State management</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category backend">
+            <h3>Backend Technologies</h3>
+            <ul>
+                <li><strong>FastAPI:</strong> High-performance Python web framework</li>
+                <li><strong>Pydantic:</strong> Data validation using Python type hints</li>
+                <li><strong>SQLAlchemy:</strong> SQL toolkit and ORM</li>
+                <li><strong>Alembic:</strong> Database migration tool</li>
+                <li><strong>JWT:</strong> JSON Web Token authentication</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category database">
+            <h3>Database & Storage</h3>
+            <ul>
+                <li><strong>PostgreSQL:</strong> Advanced open source relational database</li>
+                <li><strong>Database Migrations:</strong> Version-controlled schema changes</li>
+                <li><strong>Connection Pooling:</strong> Optimized database connections</li>
+                <li><strong>Data Validation:</strong> Comprehensive input validation</li>
+            </ul>
+        </div>
+        
+        <div class="tech-category deployment">
+            <h3>DevOps & Deployment</h3>
+            <ul>
+                <li><strong>GitHub Actions:</strong> Automated CI/CD pipeline</li>
+                <li><strong>Docker:</strong> Containerization support</li>
+                <li><strong>Multi-Environment:</strong> Dev, staging, production configs</li>
+                <li><strong>Automated Testing:</strong> Comprehensive test suites</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <h4>User Authentication</h4>
+            <p>Secure JWT-based authentication system with user registration, login, and session management.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Book Management</h4>
+            <p>Complete CRUD operations for books with search, categorization, and detailed metadata.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Personal Library</h4>
+            <p>Users can maintain their personal book collections with lending/borrowing tracking.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Responsive Design</h4>
+            <p>Mobile-first design with dark mode support and optimized user experience across devices.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Data Management</h4>
+            <p>Comprehensive data import/export utilities and flexible database management scripts.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>Testing Suite</h4>
+            <p>Extensive testing with Pytest (backend), Playwright (E2E), and React Testing Library (frontend).</p>
+        </div>
+    </div>
+
+    <div class="implementation-details">
+        <h2>Implementation Highlights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>🏗️ Architecture Decisions</h4>
+                <ul>
+                    <li>Separation of concerns with distinct frontend/backend repos</li>
+                    <li>RESTful API design with FastAPI's automatic documentation</li>
+                    <li>Environment-specific configuration management</li>
+                    <li>Comprehensive database migration strategy</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>🔒 Security Features</h4>
+                <ul>
+                    <li>JWT token-based authentication</li>
+                    <li>Password hashing and validation</li>
+                    <li>Input sanitization and validation</li>
+                    <li>CORS configuration for cross-origin requests</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>⚡ Performance Optimizations</h4>
+                <ul>
+                    <li>Vite for fast development and optimized builds</li>
+                    <li>Database query optimization</li>
+                    <li>Responsive image loading</li>
+                    <li>Efficient state management with React Context</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>🔧 Development Experience</h4>
+                <ul>
+                    <li>Automated testing pipeline with GitHub Actions</li>
+                    <li>Hot reload for both frontend and backend</li>
+                    <li>Comprehensive error handling and logging</li>
+                    <li>Detailed API documentation with FastAPI/OpenAPI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

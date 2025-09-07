@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Server Implementation Architecture</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../about/presentation.html">About</a>
+        <a href="index.html">Portfolio</a>
+        <a href="../research/index.html">Research</a>
+        <a href="../contact.html">Contact</a>
+    </nav>
+</header>
+<div class="header">
+        <h1>Development Server Implementation</h1>
+        <p>Gitea & Jupyter Infrastructure on Refurbished Hardware</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Transform legacy hardware into a modern development infrastructure by implementing self-hosted Gitea version control and Jupyter computational environments. This project demonstrates cost-effective resource utilization and sustainable technology practices.</p>
+        
+        <p><strong>Innovation:</strong> Successfully extended the lifecycle of a 2006-era Dell OptiPlex through strategic hardware upgrades and modern software deployment, creating a collaborative development platform.</p>
+        
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Core Services</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">8GB</div>
+                <div class="metric-label">RAM Upgrade</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">1TB</div>
+                <div class="metric-label">SSD Storage</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">19</div>
+                <div class="metric-label">Year Lifespan</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>System Architecture Stack</h2>
+        <svg viewBox="0 0 800 600" style="width: 100%; max-width: 800px; height: auto;">
+            <!-- Background -->
+            <rect width="800" height="600" fill="#f5f5f5" rx="10" ry="10"/>
+            
+            <!-- Hardware Layer -->
+            <rect x="100" y="480" width="600" height="80" fill="#ffebee" stroke="#c62828" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="510" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#c62828">Hardware</text>
+            <text x="400" y="535" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">Dell OptiPlex 740 (8GB RAM, 1TB SSD)</text>
+            
+            <!-- OS Layer -->
+            <rect x="100" y="400" width="600" height="60" fill="#e8eaf6" stroke="#3949ab" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="435" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#3949ab">Debian 12 "Bookworm"</text>
+            
+            <!-- Service Container Layer -->
+            <rect x="100" y="80" width="600" height="300" fill="#f5f5f5" stroke="#616161" stroke-width="2" rx="10" ry="10"/>
+            <text x="400" y="105" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#616161">Development Services</text>
+            
+            <!-- Gitea Service -->
+            <rect x="130" y="130" width="250" height="220" fill="#e0f2f1" stroke="#00796b" stroke-width="2" rx="8" ry="8"/>
+            <text x="255" y="155" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#00796b">Gitea</text>
+            <text x="255" y="175" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Self-hosted Git Service</text>
+            
+            <!-- Gitea Components -->
+            <rect x="150" y="190" width="210" height="30" fill="#b2dfdb" stroke="#00796b" stroke-width="1" rx="4" ry="4"/>
+            <text x="255" y="210" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Repository Management</text>
+            
+            <rect x="150" y="230" width="210" height="30" fill="#b2dfdb" stroke="#00796b" stroke-width="1" rx="4" ry="4"/>
+            <text x="255" y="250" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Web Interface (Port 3000)</text>
+            
+            <rect x="150" y="270" width="210" height="30" fill="#b2dfdb" stroke="#00796b" stroke-width="1" rx="4" ry="4"/>
+            <text x="255" y="290" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">User Authentication</text>
+            
+            <rect x="150" y="310" width="210" height="30" fill="#b2dfdb" stroke="#00796b" stroke-width="1" rx="4" ry="4"/>
+            <text x="255" y="330" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Integrated CI/CD</text>
+            
+            <!-- Jupyter Service -->
+            <rect x="420" y="130" width="250" height="220" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" rx="8" ry="8"/>
+            <text x="545" y="155" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#0288d1">Jupyter</text>
+            <text x="545" y="175" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Data Science Environment</text>
+            
+            <!-- Jupyter Components -->
+            <rect x="440" y="190" width="210" height="30" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+            <text x="545" y="210" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">JupyterHub (Multi-user)</text>
+            
+            <rect x="440" y="230" width="210" height="30" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+            <text x="545" y="250" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">JupyterLab (Web IDE)</text>
+            
+            <rect x="440" y="270" width="210" height="30" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+            <text x="545" y="290" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Notebook Interface (Port 8888)</text>
+            
+            <rect x="440" y="310" width="210" height="30" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="4" ry="4"/>
+            <text x="545" y="330" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Multiple Python Environments</text>
+            
+            <!-- User Connections -->
+            <circle cx="255" cy="60" r="20" fill="#e0f7fa" stroke="#006064" stroke-width="2"/>
+            <text x="255" y="65" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#006064">G</text>
+            
+            <circle cx="545" cy="60" r="20" fill="#e0f7fa" stroke="#006064" stroke-width="2"/>
+            <text x="545" y="65" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#006064">J</text>
+            
+            <line x1="255" y1="80" x2="255" y2="130" stroke="#006064" stroke-width="2" stroke-dasharray="5,5"/>
+            <polygon points="255,130 250,120 260,120" fill="#006064"/>
+            
+            <line x1="545" y1="80" x2="545" y2="130" stroke="#006064" stroke-width="2" stroke-dasharray="5,5"/>
+            <polygon points="545,130 540,120 550,120" fill="#006064"/>
+            
+            <!-- Networking Layer -->
+            <rect x="100" y="350" width="600" height="30" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
+            <text x="400" y="370" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Local Network Access (192.168.1.x)</text>
+            
+            <!-- Maintenance Tools -->
+            <rect x="700" y="200" width="30" height="130" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="5" ry="5" transform="rotate(270 715 265)"/>
+            <text x="715" y="240" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c" transform="rotate(270 715 240)">Maintenance Tools</text>
+            
+            <rect x="640" y="275" width="150" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="715" y="292" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Repository Migration Scripts</text>
+            
+            <rect x="640" y="305" width="150" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3" ry="3"/>
+            <text x="715" y="322" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Environment Setup Scripts</text>
+        </svg>
+    </div>
+
+    <div class="hardware-section">
+        <h2>🔧 Hardware Refurbishment Project</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>📦 Original System (2006)</h4>
+                <ul>
+                    <li><strong>Model:</strong> Dell OptiPlex 740 Mini-tower</li>
+                    <li><strong>Processor:</strong> AMD Athlon 64 X2 5600+ (2.80 GHz)</li>
+                    <li><strong>Motherboard:</strong> NVIDIA nForce chipset</li>
+                    <li><strong>Original RAM:</strong> Basic DDR2 configuration</li>
+                    <li><strong>Storage:</strong> 1TB WD Black Enterprise HDD</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>⚡ Completed Upgrades</h4>
+                <ul>
+                    <li><strong>RAM Upgrade:</strong> 8GB DDR2-800 MHz (4x2GB)</li>
+                    <li><strong>SSD Addition:</strong> 1TB WD Blue SA510 SATA SSD</li>
+                    <li><strong>OS Migration:</strong> Modern Debian 12 "Bookworm"</li>
+                    <li><strong>BIOS:</strong> Verified version 1.2.2 compatibility</li>
+                    <li><strong>Connectivity:</strong> Enhanced network configuration</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px;">
+            <p><strong>🌱 Sustainability Impact:</strong> Extended hardware lifecycle by 19+ years, demonstrating effective resource utilization and reducing electronic waste through strategic modernization.</p>
+        </div>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card gitea-service">
+            <h3>🗂️ Gitea Version Control</h3>
+            <h4>Core Features</h4>
+            <ul>
+                <li><strong>Repository Management:</strong> Full Git functionality</li>
+                <li><strong>Web Interface:</strong> GitHub-like user experience</li>
+                <li><strong>User Management:</strong> Multi-user collaboration</li>
+                <li><strong>Issue Tracking:</strong> Project management tools</li>
+                <li><strong>CI/CD Integration:</strong> Automated workflows</li>
+            </ul>
+            
+            <h4>Migration Tools</h4>
+            <ul>
+                <li>Automated repository migration scripts</li>
+                <li>Bulk user and permission transfer</li>
+                <li>Cross-platform compatibility</li>
+                <li>Data integrity verification</li>
+            </ul>
+        </div>
+        
+        <div class="service-card jupyter-service">
+            <h3>🔬 Jupyter Data Science Platform</h3>
+            <h4>Multi-User Environment</h4>
+            <ul>
+                <li><strong>JupyterHub:</strong> Centralized multi-user management</li>
+                <li><strong>JupyterLab:</strong> Modern web-based IDE</li>
+                <li><strong>Notebook Interface:</strong> Interactive computing</li>
+                <li><strong>Multiple Kernels:</strong> Python 3.8, 3.9, 3.10, 3.11</li>
+                <li><strong>Shared Storage:</strong> Collaborative workspace</li>
+            </ul>
+            
+            <h4>Environment Management</h4>
+            <ul>
+                <li>Isolated Python virtual environments</li>
+                <li>Custom kernel provisioning</li>
+                <li>Package management per user</li>
+                <li>Persistent notebook storage</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <h4>🔒 Security Implementation</h4>
+            <p>Comprehensive security with user authentication, network access controls, and secure communication protocols.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>📈 Performance Optimization</h4>
+            <p>Strategic hardware upgrades and software tuning to maximize performance on legacy hardware.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>🔧 Maintenance Automation</h4>
+            <p>Custom scripts for system maintenance, backup procedures, and service monitoring.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>🌐 Network Integration</h4>
+            <p>Seamless local network integration with proper port management and service discovery.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>📚 Documentation & Guides</h4>
+            <p>Comprehensive user guides and system documentation for easy onboarding and maintenance.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h4>🔄 Backup & Recovery</h4>
+            <p>Automated backup systems and disaster recovery procedures for data protection.</p>
+        </div>
+    </div>
+
+    <div class="implementation-details">
+        <h2>🏗️ Implementation Stack</h2>
+        
+        <div class="stack-layer layer-hardware">
+            <h4>Hardware Layer</h4>
+            <p><strong>Dell OptiPlex 740:</strong> Refurbished with 8GB DDR2 RAM and 1TB SSD upgrade. AMD Athlon 64 X2 processor with NVIDIA nForce chipset providing stable foundation for modern services.</p>
+        </div>
+        
+        <div class="stack-layer layer-os">
+            <h4>Operating System</h4>
+            <p><strong>Debian 12 "Bookworm":</strong> Modern Linux distribution providing security updates, package management, and stable base for containerized services.</p>
+        </div>
+        
+        <div class="stack-layer layer-services">
+            <h4>Application Services</h4>
+            <p><strong>Gitea & Jupyter:</strong> Containerized deployments with proper isolation, resource management, and service orchestration. Custom configuration for optimal performance on limited resources.</p>
+        </div>
+        
+        <div class="stack-layer layer-network">
+            <h4>Network & Access</h4>
+            <p><strong>Local Network Integration:</strong> Secure web interfaces accessible via local network with proper firewall configuration and service discovery.</p>
+        </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #00796b, #4db6ac); color: white; padding: 25px; border-radius: 10px; text-align: center; margin-top: 30px;">
+        <h2>🎯 Project Success</h2>
+        <p><strong>Transformed legacy hardware into modern development infrastructure</strong> supporting version control, collaborative coding, and data science workflows. The implementation demonstrates effective resource utilization and sustainable technology practices.</p>
+        
+        <p><strong>Key Achievement:</strong> Extended hardware lifecycle by nearly two decades while providing modern development capabilities, proving that strategic upgrades can deliver significant value from existing resources.</p>
+    </div>
+</body>
+</html>

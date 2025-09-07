@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computing Curricula Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 18px 12px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th:first-child {
+            width: 140px;
+            min-width: 140px;
+        }
+
+        td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .row-header {
+            font-weight: 600;
+            background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
+            color: #2c3e50;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            border-right: 2px solid #bdc3c7;
+        }
+
+        .program-name {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+
+        .focus-area {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .core-subject {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .career-path {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .skill {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .industry {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 4px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .math-heavy {
+            color: #8e44ad;
+            font-weight: 600;
+        }
+
+        .business-heavy {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .hands-on {
+            color: #16a085;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1200px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            table {
+                font-size: 11px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+            }
+            
+            th:first-child {
+                width: 100px;
+                min-width: 100px;
+            }
+        }
+
+        .legend {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .legend h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 15px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Computing Curricula Comparison</h1>
+            <p>Bachelor of Science Degree Programs - Comprehensive Overview</p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th class="program-name">Computer Engineering</th>
+                        <th class="program-name">Computer Science</th>
+                        <th class="program-name">Cybersecurity</th>
+                        <th class="program-name">Data Science</th>
+                        <th class="program-name">Information Systems</th>
+                        <th class="program-name">Information Technology</th>
+                        <th class="program-name">Software Engineering</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-header">Primary Focus</td>
+                        <td class="focus-area">Hardware-Software Integration</td>
+                        <td class="focus-area">Algorithms & Theory</td>
+                        <td class="focus-area">Security & Risk Management</td>
+                        <td class="focus-area">Analytics & Machine Learning</td>
+                        <td class="focus-area">Business-IT Alignment</td>
+                        <td class="focus-area">Technology Implementation</td>
+                        <td class="focus-area">Software Development Lifecycle</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Core Mathematics</td>
+                        <td class="math-heavy">Calculus I-III, Differential Equations, Linear Algebra, Statistics</td>
+                        <td class="math-heavy">Calculus I-III, Linear Algebra, Discrete Math, Statistics</td>
+                        <td>College Algebra, Statistics, Discrete Math</td>
+                        <td class="math-heavy">Calculus I-II, Linear Algebra, Statistics, Probability Theory</td>
+                        <td>College Algebra, Statistics, Business Math</td>
+                        <td>College Algebra, Statistics</td>
+                        <td>Calculus I, Linear Algebra, Discrete Math, Statistics</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Programming Languages</td>
+                        <td>
+                            <div class="core-subject">C/C++</div>
+                            <div class="core-subject">Assembly</div>
+                            <div class="core-subject">Verilog/VHDL</div>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">Java</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">C/C++</div>
+                            <div class="core-subject">Java</div>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">JavaScript</div>
+                            <div class="core-subject">Scheme/Lisp</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">C/C++</div>
+                            <div class="core-subject">Java</div>
+                            <div class="core-subject">PowerShell</div>
+                            <div class="core-subject">Bash</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">R</div>
+                            <div class="core-subject">SQL</div>
+                            <div class="core-subject">Scala</div>
+                            <div class="core-subject">Java</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Java</div>
+                            <div class="core-subject">C#</div>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">SQL</div>
+                            <div class="core-subject">JavaScript</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">Java</div>
+                            <div class="core-subject">C#</div>
+                            <div class="core-subject">JavaScript</div>
+                            <div class="core-subject">PowerShell</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Java</div>
+                            <div class="core-subject">C++</div>
+                            <div class="core-subject">Python</div>
+                            <div class="core-subject">JavaScript</div>
+                            <div class="core-subject">C#</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Core Technical Courses</td>
+                        <td>
+                            <div class="core-subject">Digital Logic Design</div>
+                            <div class="core-subject">Computer Architecture</div>
+                            <div class="core-subject">Embedded Systems</div>
+                            <div class="core-subject">Circuit Analysis</div>
+                            <div class="core-subject">Signal Processing</div>
+                            <div class="core-subject">VLSI Design</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Data Structures & Algorithms</div>
+                            <div class="core-subject">Computer Architecture</div>
+                            <div class="core-subject">Operating Systems</div>
+                            <div class="core-subject">Database Systems</div>
+                            <div class="core-subject">Compiler Design</div>
+                            <div class="core-subject">Theory of Computation</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Network Security</div>
+                            <div class="core-subject">Cryptography</div>
+                            <div class="core-subject">Ethical Hacking</div>
+                            <div class="core-subject">Digital Forensics</div>
+                            <div class="core-subject">Risk Assessment</div>
+                            <div class="core-subject">Security Architecture</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Machine Learning</div>
+                            <div class="core-subject">Data Mining</div>
+                            <div class="core-subject">Statistical Analysis</div>
+                            <div class="core-subject">Big Data Analytics</div>
+                            <div class="core-subject">Data Visualization</div>
+                            <div class="core-subject">Predictive Modeling</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Systems Analysis</div>
+                            <div class="core-subject">Database Management</div>
+                            <div class="core-subject">Business Process Modeling</div>
+                            <div class="core-subject">Enterprise Architecture</div>
+                            <div class="core-subject">Project Management</div>
+                            <div class="core-subject">ERP Systems</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Network Administration</div>
+                            <div class="core-subject">System Administration</div>
+                            <div class="core-subject">Cloud Computing</div>
+                            <div class="core-subject">Help Desk Operations</div>
+                            <div class="core-subject">IT Infrastructure</div>
+                            <div class="core-subject">Cybersecurity Basics</div>
+                        </td>
+                        <td>
+                            <div class="core-subject">Software Design Patterns</div>
+                            <div class="core-subject">Software Architecture</div>
+                            <div class="core-subject">Agile Development</div>
+                            <div class="core-subject">Testing & QA</div>
+                            <div class="core-subject">DevOps</div>
+                            <div class="core-subject">Requirements Engineering</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Business/Management Content</td>
+                        <td>Engineering Economics, Project Management</td>
+                        <td class="business-heavy">Limited - Ethics, Team Projects</td>
+                        <td class="business-heavy">Risk Management, Compliance, Security Policy</td>
+                        <td class="business-heavy">Business Analytics, Strategic Decision Making</td>
+                        <td class="business-heavy">Extensive - Business Strategy, Change Management, IT Governance</td>
+                        <td class="business-heavy">Moderate - Project Management, ITIL, Service Management</td>
+                        <td class="business-heavy">Project Management, Software Economics, Team Leadership</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Hands-on Experience</td>
+                        <td class="hands-on">Extensive - Lab work, Hardware projects, Senior capstone</td>
+                        <td class="hands-on">Moderate - Programming projects, Algorithm implementation</td>
+                        <td class="hands-on">Extensive - Penetration testing, Security labs, Incident response</td>
+                        <td class="hands-on">Extensive - Real datasets, Analytics projects, Internships</td>
+                        <td class="hands-on">Moderate - Case studies, System design, Business simulations</td>
+                        <td class="hands-on">Extensive - Lab work, Certification prep, Troubleshooting</td>
+                        <td class="hands-on">Extensive - Team projects, Agile sprints, Full development lifecycle</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Typical Career Paths</td>
+                        <td>
+                            <div class="career-path">Hardware Engineer</div>
+                            <div class="career-path">Embedded Systems Developer</div>
+                            <div class="career-path">FPGA Engineer</div>
+                            <div class="career-path">Systems Architect</div>
+                            <div class="career-path">IoT Developer</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Software Developer</div>
+                            <div class="career-path">Research Scientist</div>
+                            <div class="career-path">Algorithm Engineer</div>
+                            <div class="career-path">Machine Learning Engineer</div>
+                            <div class="career-path">Academic/PhD Track</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Security Analyst</div>
+                            <div class="career-path">Penetration Tester</div>
+                            <div class="career-path">CISO</div>
+                            <div class="career-path">Forensics Specialist</div>
+                            <div class="career-path">Compliance Manager</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Data Scientist</div>
+                            <div class="career-path">ML Engineer</div>
+                            <div class="career-path">Business Analyst</div>
+                            <div class="career-path">Research Analyst</div>
+                            <div class="career-path">Data Engineer</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Business Analyst</div>
+                            <div class="career-path">Systems Analyst</div>
+                            <div class="career-path">IT Manager</div>
+                            <div class="career-path">CIO</div>
+                            <div class="career-path">Product Manager</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Network Administrator</div>
+                            <div class="career-path">System Administrator</div>
+                            <div class="career-path">IT Support Specialist</div>
+                            <div class="career-path">Cloud Engineer</div>
+                            <div class="career-path">DevOps Engineer</div>
+                        </td>
+                        <td>
+                            <div class="career-path">Software Developer</div>
+                            <div class="career-path">Software Architect</div>
+                            <div class="career-path">Scrum Master</div>
+                            <div class="career-path">QA Engineer</div>
+                            <div class="career-path">DevOps Engineer</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Industry Applications</td>
+                        <td>
+                            <div class="industry">Aerospace</div>
+                            <div class="industry">Automotive</div>
+                            <div class="industry">Telecommunications</div>
+                            <div class="industry">Consumer Electronics</div>
+                            <div class="industry">Defense</div>
+                        </td>
+                        <td>
+                            <div class="industry">Technology</div>
+                            <div class="industry">Finance</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">Research</div>
+                            <div class="industry">Gaming</div>
+                        </td>
+                        <td>
+                            <div class="industry">Finance</div>
+                            <div class="industry">Government</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">Consulting</div>
+                            <div class="industry">Critical Infrastructure</div>
+                        </td>
+                        <td>
+                            <div class="industry">Technology</div>
+                            <div class="industry">Finance</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">Retail</div>
+                            <div class="industry">Consulting</div>
+                        </td>
+                        <td>
+                            <div class="industry">All Industries</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">Finance</div>
+                            <div class="industry">Manufacturing</div>
+                            <div class="industry">Government</div>
+                        </td>
+                        <td>
+                            <div class="industry">All Industries</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">Education</div>
+                            <div class="industry">Manufacturing</div>
+                            <div class="industry">Small-Medium Business</div>
+                        </td>
+                        <td>
+                            <div class="industry">Technology</div>
+                            <div class="industry">Finance</div>
+                            <div class="industry">Healthcare</div>
+                            <div class="industry">E-commerce</div>
+                            <div class="industry">Enterprise Software</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Salary Range (Entry)</td>
+                        <td>$70K - $90K</td>
+                        <td>$75K - $95K</td>
+                        <td>$65K - $85K</td>
+                        <td>$70K - $95K</td>
+                        <td>$55K - $75K</td>
+                        <td>$45K - $65K</td>
+                        <td>$70K - $90K</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Salary Range (Mid-Career)</td>
+                        <td>$95K - $130K</td>
+                        <td>$100K - $140K</td>
+                        <td>$90K - $125K</td>
+                        <td>$95K - $135K</td>
+                        <td>$75K - $110K</td>
+                        <td>$65K - $95K</td>
+                        <td>$90K - $125K</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Best For Students Who...</td>
+                        <td>Love both hardware and software, enjoy building things, want to work with physical systems</td>
+                        <td>Excel at mathematical thinking, enjoy theoretical concepts, want research opportunities</td>
+                        <td>Are detail-oriented, enjoy puzzle-solving, want to protect digital assets</td>
+                        <td>Love mathematics and statistics, enjoy finding patterns, want to work with big data</td>
+                        <td>Want to bridge business and technology, enjoy working with people, prefer less coding</td>
+                        <td>Want practical skills, enjoy troubleshooting, prefer implementation over theory</td>
+                        <td>Enjoy collaborative coding, like systematic approaches, want to build applications</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Program Difficulty</td>
+                        <td class="math-heavy">Very High - Intensive math + engineering</td>
+                        <td class="math-heavy">Very High - Theoretical + mathematical rigor</td>
+                        <td class="hands-on">High - Technical depth + security focus</td>
+                        <td class="math-heavy">High - Statistical complexity + programming</td>
+                        <td class="business-heavy">Moderate - Business focus, less technical depth</td>
+                        <td class="hands-on">Moderate - Practical focus, less theory</td>
+                        <td class="hands-on">High - Complex projects + team coordination</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Job Market Demand</td>
+                        <td class="focus-area">High - IoT, embedded systems growth</td>
+                        <td class="focus-area">Very High - AI/ML, software development boom</td>
+                        <td class="focus-area">Very High - Increasing security threats</td>
+                        <td class="focus-area">Very High - Data-driven decisions everywhere</td>
+                        <td class="focus-area">Moderate - Digital transformation needs</td>
+                        <td class="focus-area">High - Cloud migration, remote work support</td>
+                        <td class="focus-area">Very High - Software development expansion</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Remote Work Potential</td>
+                        <td class="hands-on">Low - Hardware requires physical presence</td>
+                        <td class="focus-area">Very High - Software development friendly</td>
+                        <td class="focus-area">High - Security consulting, analysis</td>
+                        <td class="focus-area">Very High - Data analysis, modeling</td>
+                        <td class="business-heavy">High - Business analysis, consulting</td>
+                        <td class="hands-on">Moderate - Some roles require on-site support</td>
+                        <td class="focus-area">Very High - Agile teams, distributed development</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Entrepreneurship Potential</td>
+                        <td class="hands-on">High - Hardware startups, IoT products</td>
+                        <td class="focus-area">Very High - Software products, AI startups</td>
+                        <td class="focus-area">High - Security consulting, products</td>
+                        <td class="focus-area">High - Analytics services, ML products</td>
+                        <td class="business-heavy">Moderate - Consulting, business solutions</td>
+                        <td class="hands-on">Moderate - IT services, support businesses</td>
+                        <td class="focus-area">Very High - Software products, SaaS</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Industry Certifications</td>
+                        <td>
+                            <div class="skill">IEEE Standards</div>
+                            <div class="skill">ARM Certification</div>
+                            <div class="skill">CompTIA A+</div>
+                            <div class="skill">Xilinx/Intel FPGA</div>
+                        </td>
+                        <td>
+                            <div class="skill">AWS/Azure Cloud</div>
+                            <div class="skill">Google TensorFlow</div>
+                            <div class="skill">Oracle Java</div>
+                            <div class="skill">Microsoft Certifications</div>
+                        </td>
+                        <td>
+                            <div class="skill">CISSP</div>
+                            <div class="skill">CISM</div>
+                            <div class="skill">CEH</div>
+                            <div class="skill">CompTIA Security+</div>
+                        </td>
+                        <td>
+                            <div class="skill">AWS ML Specialty</div>
+                            <div class="skill">Google Data Engineer</div>
+                            <div class="skill">Microsoft Azure AI</div>
+                            <div class="skill">SAS Certification</div>
+                        </td>
+                        <td>
+                            <div class="skill">PMP</div>
+                            <div class="skill">ITIL</div>
+                            <div class="skill">SAP</div>
+                            <div class="skill">Salesforce Admin</div>
+                        </td>
+                        <td>
+                            <div class="skill">CompTIA A+, Network+</div>
+                            <div class="skill">Cisco CCNA</div>
+                            <div class="skill">Microsoft 365</div>
+                            <div class="skill">AWS Solutions Architect</div>
+                        </td>
+                        <td>
+                            <div class="skill">Scrum Master</div>
+                            <div class="skill">AWS Developer</div>
+                            <div class="skill">Docker/Kubernetes</div>
+                            <div class="skill">Jenkins CI/CD</div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Graduate School Preparation</td>
+                        <td class="focus-area">Excellent - MS/PhD in Engineering</td>
+                        <td class="focus-area">Excellent - MS/PhD in CS, Research</td>
+                        <td class="hands-on">Good - MS in Cybersecurity, InfoSec</td>
+                        <td class="focus-area">Excellent - MS/PhD in Data Science, Statistics</td>
+                        <td class="business-heavy">Good - MBA, MS in Information Systems</td>
+                        <td class="hands-on">Limited - Professional certifications preferred</td>
+                        <td class="focus-area">Good - MS in Software Engineering, CS</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Work-Life Balance</td>
+                        <td class="hands-on">Good - Standard engineering hours</td>
+                        <td class="focus-area">Variable - Depends on role/company</td>
+                        <td class="hands-on">Challenging - On-call for security incidents</td>
+                        <td class="focus-area">Good - Project-based, flexible</td>
+                        <td class="business-heavy">Good - Business hours, meetings</td>
+                        <td class="hands-on">Variable - Support roles may require on-call</td>
+                        <td class="hands-on">Variable - Deadline pressure, but flexible</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Career Progression Path</td>
+                        <td class="focus-area">Technical → Senior Engineer → Architect → CTO</td>
+                        <td class="focus-area">Developer → Senior → Tech Lead → Architect/CTO</td>
+                        <td class="focus-area">Analyst → Senior → Manager → CISO</td>
+                        <td class="focus-area">Analyst → Senior → Lead → Chief Data Officer</td>
+                        <td class="business-heavy">Analyst → Manager → Director → CIO</td>
+                        <td class="hands-on">Support → Admin → Manager → IT Director</td>
+                        <td class="focus-area">Developer → Senior → Lead → Architect/CTO</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Learning Curve Post-Graduation</td>
+                        <td class="hands-on">Steep - Rapidly evolving hardware/software</td>
+                        <td class="focus-area">Continuous - New languages, frameworks</td>
+                        <td class="hands-on">Very Steep - Constant threat evolution</td>
+                        <td class="focus-area">Steep - New ML techniques, tools</td>
+                        <td class="business-heavy">Moderate - Business process changes</td>
+                        <td class="hands-on">Continuous - New technologies, cloud services</td>
+                        <td class="focus-area">Continuous - New frameworks, methodologies</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="row-header">Typical Team Size</td>
+                        <td class="hands-on">Small (3-8) - Specialized engineering teams</td>
+                        <td class="focus-area">Variable (2-12) - Depends on project/company</td>
+                        <td class="hands-on">Small (2-6) - Security teams usually lean</td>
+                        <td class="focus-area">Small-Medium (3-10) - Data science teams</td>
+                        <td class="business-heavy">Medium-Large (8-20) - Cross-functional teams</td>
+                        <td class="hands-on">Small-Medium (3-12) - IT support teams</td>
+                        <td class="focus-area">Medium (5-15) - Agile development teams</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color core-subject"></div>
+                    <span>Core Technical Subjects</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color career-path"></div>
+                    <span>Career Paths</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color skill"></div>
+                    <span>Key Skills</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color industry"></div>
+                    <span>Industry Applications</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

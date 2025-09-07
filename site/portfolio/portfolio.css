@@ -1,0 +1,368 @@
+/* Common styles for portfolio pages */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #388e3c 0%, #f57c00 50%, #0288d1 100%);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.header p {
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.project-overview {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.project-impact {
+    background: linear-gradient(135deg, #8e24aa, #3949ab);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid #1976d2;
+}
+.architecture-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.tech-category {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tech-category h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.user-roles {
+    background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+    border: 2px solid #3949ab;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-top: 4px solid #4caf50;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.feature-card h4 {
+    margin-top: 0;
+    color: #4caf50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+
+.feature-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.feature-section h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.auth-feature {
+    border-left: 4px solid #8e24aa;
+}
+
+.content-feature {
+    border-left: 4px solid #1976d2;
+}
+
+.admin-feature {
+    border-left: 4px solid #388e3c;
+}
+
+.analytics-feature {
+    border-left: 4px solid #f57c00;
+}
+
+.metric {
+    text-align: center;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    min-width: 120px;
+}
+
+.metric-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #8e24aa;
+}
+
+.metric-label {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.content-types {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+    border: 1px solid #8e24aa;
+}
+
+.role-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-top: 4px solid #8e24aa;
+}
+
+.role-card h4 {
+    margin: 0 0 10px 0;
+    color: #8e24aa;
+}
+
+.role-hierarchy {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.tech-category {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rails-backend {
+    border-left: 4px solid #cc0000;
+}
+
+.frontend-tech {
+    border-left: 4px solid #1976d2;
+}
+
+.security-tech {
+    border-left: 4px solid #388e3c;
+}
+
+.deployment-tech {
+    border-left: 4px solid #f57c00;
+}
+
+
+.metrics {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.metric {
+    text-align: center;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    min-width: 120px;
+}
+
+.metric-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #388e3c;
+}
+
+.metric-label {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Portfolio index page specific styles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid #388e3c;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.project-card p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.project-card a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #388e3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.project-card a:hover {
+    background-color: #2e7d32;
+}
+
+.implementation-details {
+    background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+    border: 1px solid #ddd;
+}
+
+.implementation-highlights {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .tech-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .feature-card {
+        padding: 15px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.svg-container {
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+.svg-container svg {
+    display: block;
+    min-width: 1000px; /* Ensures the SVG maintains its minimum width */
+}
