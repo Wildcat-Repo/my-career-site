@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior SDET Interview Questions - Comprehensive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .category-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-button.active {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .question-category {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header h2 {
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .category-content {
+            padding: 30px;
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        .question {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            background: #ecf0f1;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .question-number {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .question-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .question-content.active {
+            display: block;
+        }
+
+        .question-why {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .question-why h4 {
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .your-approach {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .your-approach h4 {
+            color: #0c5460;
+            margin-bottom: 8px;
+        }
+
+        .key-points {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Senior SDET Interview Questions</h1>
+            <p>Comprehensive Guide with Strategic Approaches</p>
+        </div>
+
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">30</span>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <div class="stat-label">Key Categories</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Coverage</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-nav">
+            <div class="nav-buttons">
+                <button class="nav-button active" onclick="showCategory('strategic')">Strategic & Leadership</button>
+                <button class="nav-button" onclick="showCategory('technical')">Technical Implementation</button>
+                <button class="nav-button" onclick="showCategory('problem-solving')">Problem Solving</button>
+                <button class="nav-button" onclick="showCategory('process')">Process & Methodology</button>
+            </div>
+        </div>
+
+        <!-- Strategic & Leadership Questions -->
+        <div class="question-category" id="strategic">
+            <div class="category-header" onclick="toggleCategory('strategic')">
+                <h2>Strategic & Leadership Questions</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content active">
+                
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">What is your approach to developing a comprehensive test strategy for complex software systems?</div>
+                        <div class="question-number">Q1</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Assesses strategic thinking, understanding of complex systems, and ability to design comprehensive testing approaches that ensure quality across the entire software development lifecycle.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Draw from Hulu experience with React/Python services serving 100M+ users</li>
+                                <li>Start with risk assessment - identify high-impact functionalities first</li>
+                                <li>Define clear objectives for each test level (unit, integration, system, acceptance)</li>
+                                <li>Choose automation tools based on technology stack (Selenium, Cypress, Pytest)</li>
+                                <li>Integrate testing into CI/CD pipeline for early issue detection</li>
+                                <li>Reference your 80%+ test coverage achievement at Hulu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Have you led a team in transitioning from manual to automated testing?</div>
+                        <div class="question-number">Q8</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests leadership skills, change management abilities, and technical expertise in driving automation initiatives across teams.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference your mentoring experience at Hulu and standardizing automation practices</li>
+                                <li>Identify tests suitable for automation (repetitive tasks, multiple data sets)</li>
+                                <li>Tool selection process considering language support, ease of use, and cost</li>
+                                <li>Comprehensive team training and skill development</li>
+                                <li>Stakeholder communication throughout the transition</li>
+                                <li>Regular reviews and adjustments based on feedback and metrics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Tell me about a time you had to convince others about the importance of QA processes.</div>
+                        <div class="question-number">Q16</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Evaluates communication skills, advocacy abilities, and understanding of QA's business value.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Use experience from leadership roles across multiple companies</li>
+                                <li>Share specific example where bypassing QA led to customer issues</li>
+                                <li>Demonstrate how proper testing prevents reputational damage</li>
+                                <li>Show quantifiable benefits (reduced post-release bugs, customer satisfaction)</li>
+                                <li>Emphasize long-term cost savings vs. short-term deadline pressure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Highlight any experiences working within Agile or Scrum methodologies.</div>
+                        <div class="question-number">Q21</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests familiarity with modern development practices and ability to work in fast-paced, collaborative environments.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference extensive Agile experience across multiple companies</li>
+                                <li>Discuss specific Scrum ceremonies: daily standups, sprint planning, retrospectives</li>
+                                <li>Emphasize cross-functional collaboration skills</li>
+                                <li>Show how testing fits within sprint cycles and continuous delivery</li>
+                                <li>Highlight adaptation and feedback incorporation abilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Highlight any experience you've had in mentoring junior engineers or leading testing teams.</div>
+                        <div class="question-number">Q30</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Assesses leadership capabilities and ability to develop others - key requirements for senior roles.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Highlight mentoring at Hulu, Nevelex, and HauteLook</li>
+                                <li>Discuss regular code reviews for quality and education</li>
+                                <li>Detail knowledge transfer and training processes established</li>
+                                <li>Show how you created learning opportunities through challenging assignments</li>
+                                <li>Emphasize collaborative environment fostering growth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Technical Implementation Questions -->
+        <div class="question-category" id="technical" style="display: none;">
+            <div class="category-header" onclick="toggleCategory('technical')">
+                <h2>Technical Implementation Questions</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Describe an instance where the use of automation testing significantly improved project outcomes.</div>
+                        <div class="question-number">Q3</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests practical automation experience and ability to demonstrate business value through technical solutions.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Use Hulu achievement: 80%+ test coverage for streaming platform serving 100M+ users</li>
+                                <li>Detail tools used: Selenium, Cypress, React Testing Library, Pytest</li>
+                                <li>Quantify improvements: faster delivery times, reduced manual effort</li>
+                                <li>Show business impact: improved release velocity, higher customer satisfaction</li>
+                                <li>Demonstrate CI integration benefits for continuous quality assurance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Share your experience in integrating test suites into CI/CD pipelines.</div>
+                        <div class="question-number">Q4</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Evaluates modern DevOps practices and understanding of continuous integration/deployment workflows.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference current work building CI/CD pipelines with Jenkins, Docker, Kubernetes</li>
+                                <li>Discuss test execution order: unit tests first, then integration, then end-to-end</li>
+                                <li>Explain parallel testing implementation for efficiency</li>
+                                <li>Detail Docker container usage for consistent environments</li>
+                                <li>Show how this maintains quality while accelerating delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Walk me through how you'd design a system for end-to-end testing of a microservices architecture.</div>
+                        <div class="question-number">Q7</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests understanding of modern distributed systems and complex testing challenges.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Draw from full-stack application architecture experience</li>
+                                <li>Define scope: identify critical services and dependencies</li>
+                                <li>Use service virtualization for isolation and simulation</li>
+                                <li>Implement automation: API testing tools (Postman), CI tools (Jenkins)</li>
+                                <li>Establish monitoring and logging for real-time insights</li>
+                                <li>Plan rollback strategies for deployment failures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Which tools or technologies have you utilized for load and stress testing?</div>
+                        <div class="question-number">Q12</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Assesses performance testing experience and tool selection expertise.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference performance testing across multiple platforms</li>
+                                <li>Discuss JMeter for flexibility and server load simulation</li>
+                                <li>Mention Gatling for continuous load testing and pipeline integration</li>
+                                <li>Detail bottleneck identification and system resilience improvements</li>
+                                <li>Show understanding of cloud-based solutions for scalability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Illustrate your experience in cross-browser compatibility testing.</div>
+                        <div class="question-number">Q19</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests web application testing expertise and attention to user experience across platforms.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Draw from web application testing at multiple companies</li>
+                                <li>Discuss tools like BrowserStack for cross-browser validation</li>
+                                <li>Detail responsive design testing for different screen sizes</li>
+                                <li>Explain Selenium WebDriver automation for efficiency</li>
+                                <li>Show comprehensive strategy ensuring seamless user experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">How proficient are you in scripting languages for test automation?</div>
+                        <div class="question-number">Q24</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Evaluates technical depth and versatility in automation development.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Highlight extensive language knowledge: Python, Java, JavaScript, C++, C#, Ruby</li>
+                                <li>Discuss Python's simplicity for maintainable tests and PyTest integration</li>
+                                <li>Explain JavaScript benefits for web technologies and testing frameworks</li>
+                                <li>Show versatility in tool selection based on project requirements</li>
+                                <li>Demonstrate understanding of framework integration (Selenium, Jest, Mocha)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Problem Solving Questions -->
+        <div class="question-category" id="problem-solving" style="display: none;">
+            <div class="category-header" onclick="toggleCategory('problem-solving')">
+                <h2>Problem Solving & Debugging Questions</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">How do you deal with non-reproducible bugs?</div>
+                        <div class="question-number">Q2</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests problem-solving skills, patience, and systematic approach to challenging technical issues.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Emphasize systematic debugging approach from military background</li>
+                                <li>Ensure detailed bug reporting with environment specifics</li>
+                                <li>Engage in collaborative investigation with reporters</li>
+                                <li>Analyze logs and application behavior for pattern identification</li>
+                                <li>Monitor software for recurrence and gather comprehensive data</li>
+                                <li>Apply methodical problem-solving from 20+ years experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Detail your most challenging debugging experience and how it was resolved.</div>
+                        <div class="question-number">Q9</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Assesses technical expertise, perseverance, and ability to communicate complex problem-solving processes.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Draw from complex systems experience (Apple API testing, embedded systems at Nevelex)</li>
+                                <li>Describe systematic log analysis and pattern identification</li>
+                                <li>Detail custom logging implementation for better data capture</li>
+                                <li>Show innovative thinking in problem resolution</li>
+                                <li>Emphasize patience, thoroughness, and systematic approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">How would you proceed if you found a critical bug close to delivery date?</div>
+                        <div class="question-number">Q20</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests decision-making under pressure, stakeholder communication, and risk assessment abilities.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference 20+ years of handling pressure situations</li>
+                                <li>Immediate documentation and detailed reporting</li>
+                                <li>Team discussion on impact assessment and user experience</li>
+                                <li>Evaluate options: quick fix vs. comprehensive solution vs. post-launch patch</li>
+                                <li>Stakeholder communication for expectation management</li>
+                                <li>Learn from incident to improve future testing strategies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">What methods have you used for root cause analysis after detecting a defect?</div>
+                        <div class="question-number">Q22</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Evaluates analytical skills and systematic approach to preventing future issues.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Apply systematic approach developed through military training and experience</li>
+                                <li>Use 5 Whys technique for deep problem investigation</li>
+                                <li>Implement Fishbone Diagrams for visual factor identification</li>
+                                <li>Apply Fault Tree Analysis for understanding event chains</li>
+                                <li>Use Pareto Analysis for frequent defect identification</li>
+                                <li>Combine techniques with strong debugging skills for effective resolution</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Have you ever had to deal with flaky tests? If so, how did you tackle them?</div>
+                        <div class="question-number">Q28</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Tests patience, technical skills, and commitment to maintaining reliable automation.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Reference automation experience and systematic debugging</li>
+                                <li>Isolate tests to identify interaction vs. test-specific issues</li>
+                                <li>Reproduce failures under various conditions and environments</li>
+                                <li>Debug and fix: timing issues, state dependencies, or product bugs</li>
+                                <li>Monitor tests over time to ensure resolution</li>
+                                <li>Use Docker experience for environment consistency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header" onclick="toggleQuestion(this)">
+                        <div class="question-title">Share an example of a complex technical problem you solved during software testing.</div>
+                        <div class="question-number">Q29</div>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-why">
+                            <h4>Why This Question Matters:</h4>
+                            <p>Demonstrates technical competency, innovative thinking, and problem-solving methodology.</p>
+                        </div>
+                        <div class="your-approach">
+                            <h4>Your Strategic Answer:</h4>
+                            <ul class="key-points">
+                                <li>Draw from embedded systems work at Nevelex or Apple API testing challenges</li>
+                                <li>Describe systematic problem identification using debugging tools and logs</li>
+                                <li>Detail pattern recognition and hypothesis formation</li>
+                                <li>Show innovative testing approaches (stress testing, memory monitoring)</li>
