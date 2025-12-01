@@ -5,7 +5,7 @@ A simple, secure static website for showcasing Theron Blount’s personal profil
 ## Overview
 
 This repository contains:
-- A static site under the `site/` directory (HTML/CSS) with sections for Home, About, Portfolio, and Research.
+- A static site under the `site/` directory (HTML/CSS) with sections for Home, About, Portfolio, Research, and Contact.
 - A tiny Node/Express server (`server.js`) that serves the `site/` directory and applies a strict Content Security Policy (CSP).
 
 Default server address: http://localhost:3000
@@ -47,9 +47,10 @@ my-career-site/
 ├─ server.js            # Minimal Express server (port 3000)
 ├─ site/                # Static website content
 │  ├─ index.html        # Home page
-│  ├─ styles.css        # Global styles (if present)
+│  ├─ styles.css        # Global styles with navigation, footer, and social media components
 │  ├─ about/
-│  │  └─ presentation.html
+│  │  ├─ index.html
+│  │  └─ about.css
 │  ├─ portfolio/
 │  │  ├─ index.html
 │  │  ├─ portfolio.css
@@ -57,15 +58,22 @@ my-career-site/
 │  │  ├─ bookshare-architecture.html
 │  │  ├─ nfl-etl-architecture.html
 │  │  └─ development-server.html
-│  └─ research/
-│     ├─ computing_curricula_comparison.html
-│     ├─ fti_consulting_overview.html
-│     └─ fti_internship_plan.html
+│  ├─ research/
+│  │  ├─ index.html
+│  │  ├─ research.css
+│  │  ├─ computing_curricula_comparison.html
+│  │  ├─ fti_consulting_overview.html
+│  │  ├─ fti_internship_plan.html
+│  │  └─ sdet_interview_guide.html
+│  ├─ contact/
+│  │  ├─ index.html
+│  │  └─ contact.css
+│  └─ assets/
+│     └─ icons/         # SVG social media icons
+├─ resources/           # Architecture diagrams (SVG)
 ├─ package.json         # Dependencies (Express)
 └─ .gitignore
 ```
-
-Note: Some navigation links may point to pages (e.g., `research/index.html`) that are not yet present; create those as needed.
 
 ## Configuration
 
