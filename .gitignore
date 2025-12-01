@@ -31,3 +31,7 @@ coverage/
 *.tmp
 *.old
 *.orig
+
+# IDE and tool-specific
+.history/
+.claude/
