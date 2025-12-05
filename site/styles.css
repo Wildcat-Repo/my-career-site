@@ -3,6 +3,22 @@
     --content-wide-max-width: 1200px;
 }
 
+/* Skip to main content link for accessibility */
+.skip-to-main {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+}
+
+.skip-to-main:focus {
+    left: 0;
+    top: 0;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
