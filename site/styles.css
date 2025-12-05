@@ -1,7 +1,15 @@
+:root {
+    --content-max-width: 800px;
+    --content-wide-max-width: 1200px;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -26,9 +34,11 @@ nav a:hover {
 }
 
 main {
-    max-width: 800px;
+    flex: 1;
+    max-width: var(--content-max-width);
     margin: 2rem auto;
     padding: 0 1rem;
+    width: 100%;
 }
 
 footer {
@@ -36,8 +46,6 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
-    position: fixed;
-    bottom: 0;
     width: 100%;
 }
 
