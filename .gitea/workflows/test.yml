@@ -11,12 +11,13 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    
+    container: node:${{ matrix.node-version }}
+
     strategy:
       fail-fast: false
       matrix:
         # Run tests on different node versions
-        node-version: [18.x, 20.x]
+        node-version: [18, 20]
 
     steps:
       - name: Checkout code
