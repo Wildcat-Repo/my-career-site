@@ -3,12 +3,19 @@
     "start": "node server.js",
     "dev": "node server.js",
     "format": "prettier --write \"**/*.{js,html,css,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,html,css,json,md}\""
+    "format:check": "prettier --check \"**/*.{js,html,css,json,md}\"",
+    "test": "npm run test:e2e",
+    "test:e2e": "cypress run",
+    "test:e2e:headed": "cypress run --headed",
+    "test:open": "cypress open",
+    "cy:verify": "cypress verify"
   },
   "dependencies": {
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "prettier": "^3.7.4"
+    "cypress": "^14.5.4",
+    "prettier": "^3.7.4",
+    "wait-on": "^9.0.3"
   }
 }
