@@ -27,10 +27,62 @@ echo "📡 Connecting to Lightsail instance at $LIGHTSAIL_IP..."
 
 # Execute deployment on remote server
 ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no "$LIGHTSAIL_USER@$LIGHTSAIL_IP" << 'ENDSSH'
-    # Download and execute deployment script
-    curl -sSL https://git.gondoberg.com/PaddedWalls/my-career-site/raw/branch/main/scripts/deploy.sh -o /tmp/deploy.sh
-    chmod +x /tmp/deploy.sh
-    bash /tmp/deploy.sh
+    set -e
+
+    echo "🚀 Starting deployment for my-career-site..."
+
+    # Configuration
+    APP_DIR="/home/bitnami/apps/my-career-site"
+    REPO_URL="https://git.gondoberg.com/PaddedWalls/my-career-site.git"
+    BRANCH="main"
+
+    # Create app directory if it doesn't exist
+    if [ ! -d "$APP_DIR" ]; then
+        echo "📁 Creating application directory..."
+        mkdir -p "$APP_DIR"
+    fi
+
+    # Navigate to app directory
+    cd "$APP_DIR"
+
+    # Clone or pull latest code
+    if [ ! -d ".git" ]; then
+        echo "📦 Cloning repository..."
+        git clone "$REPO_URL" .
+        git checkout "$BRANCH"
+    else
+        echo "🔄 Pulling latest changes..."
+        git fetch origin
+        git checkout "$BRANCH"
+        git pull origin "$BRANCH"
+    fi
+
+    # Create logs directory
+    mkdir -p logs
+
+    # Install/update dependencies
+    echo "📚 Installing dependencies..."
+    npm ci --production
+
+    # Check if PM2 is installed
+    if ! command -v pm2 &> /dev/null; then
+        echo "📦 Installing PM2..."
+        npm install -g pm2
+    fi
+
+    # Restart application with PM2
+    echo "♻️  Restarting application with PM2..."
+    if pm2 list | grep -q "my-career-site"; then
+        pm2 restart ecosystem.config.js
+    else
+        pm2 start ecosystem.config.js
+        pm2 save
+        pm2 startup systemd -u bitnami --hp /home/bitnami
+    fi
+
+    echo "✅ Deployment completed successfully!"
+    echo "📊 Application status:"
+    pm2 status
 ENDSSH
 
 echo ""

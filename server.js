@@ -14,7 +14,7 @@ app.use((req, res) => {
   res.status(404).sendFile(__dirname + '/site/404.html');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
   console.log(`Serving files from ${__dirname}`);
 });
