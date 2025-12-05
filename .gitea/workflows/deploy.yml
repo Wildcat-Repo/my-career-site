@@ -1,0 +1,95 @@
+name: Deploy to AWS Lightsail
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Lightsail
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          LIGHTSAIL_IP: ${{ secrets.LIGHTSAIL_IP }}
+          LIGHTSAIL_USER: ${{ secrets.LIGHTSAIL_USER }}
+        run: |
+          # Set up SSH
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/lightsail_key
+          chmod 600 ~/.ssh/lightsail_key
+
+          # Add host to known_hosts
+          ssh-keyscan -H $LIGHTSAIL_IP >> ~/.ssh/known_hosts
+
+          # Deploy to Lightsail
+          ssh -i ~/.ssh/lightsail_key -o StrictHostKeyChecking=no $LIGHTSAIL_USER@$LIGHTSAIL_IP << 'ENDSSH'
+            set -e
+
+            APP_DIR="/home/bitnami/apps/my-career-site"
+            REPO_URL="https://git.gondoberg.com/PaddedWalls/my-career-site.git"
+            BRANCH="main"
+
+            echo "🚀 Starting deployment..."
+
+            # Create app directory if needed
+            mkdir -p $APP_DIR
+            cd $APP_DIR
+
+            # Clone or pull latest code
+            if [ ! -d ".git" ]; then
+              echo "📦 Cloning repository..."
+              git clone $REPO_URL .
+              git checkout $BRANCH
+            else
+              echo "🔄 Pulling latest changes..."
+              git fetch origin
+              git checkout $BRANCH
+              git pull origin $BRANCH
+            fi
+
+            # Create logs directory
+            mkdir -p logs
+
+            # Install dependencies
+            echo "📚 Installing dependencies..."
+            npm ci --production
+
+            # Install PM2 if not present
+            if ! command -v pm2 &> /dev/null; then
+              echo "📦 Installing PM2..."
+              npm install -g pm2
+            fi
+
+            # Restart with PM2
+            echo "♻️  Restarting application..."
+            if pm2 list | grep -q "my-career-site"; then
+              pm2 restart ecosystem.config.js
+            else
+              pm2 start ecosystem.config.js
+              pm2 save
+              pm2 startup systemd -u bitnami --hp /home/bitnami
+            fi
+
+            echo "✅ Deployment completed!"
+            pm2 status
+          ENDSSH
+
+          # Clean up SSH key
+          rm -f ~/.ssh/lightsail_key
+
+      - name: Deployment Success Notification
+        if: success()
+        run: |
+          echo "✅ Successfully deployed to Lightsail at $LIGHTSAIL_IP:3000"
+
+      - name: Deployment Failure Notification
+        if: failure()
+        run: |
+          echo "❌ Deployment failed. Check logs for details."

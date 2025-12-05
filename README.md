@@ -101,9 +101,25 @@ npm run start
 
 ## Deployment
 
-Because this is a static site, you can:
-- Deploy the `site/` directory to any static hosting provider (Netlify, GitHub Pages, etc.).
-- Or deploy the Node server to platforms that support long-running processes (Render, Railway, a VPS). Make sure to set the port appropriately (some platforms provide it via an environment variable) and consider making the port configurable.
+This application is configured for deployment to AWS Lightsail with automated CI/CD.
+
+**Quick Deploy:**
+```bash
+npm run deploy
+```
+
+**Deployment Methods:**
+1. **Automated (Gitea Actions)**: Automatically deploys when pushing to `main` branch
+2. **Manual Script**: Run `npm run deploy` or `./scripts/deploy-to-lightsail.sh`
+3. **Manual SSH**: SSH to server and run deployment commands
+
+**Production Environment:**
+- **Platform**: AWS Lightsail (Bitnami Nginx Stack)
+- **URL**: http://44.235.108.165:3000 (or via Nginx on port 80)
+- **Process Manager**: PM2
+- **Auto-restart**: Enabled on crashes and reboots
+
+**For detailed deployment instructions**, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## License
 

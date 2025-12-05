@@ -40,3 +40,8 @@ coverage/
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
+
+# PM2 and deployment
+logs/
+tmp/
+.aws/
