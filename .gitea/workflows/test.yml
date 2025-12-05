@@ -12,13 +12,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-${{ matrix.node-version }}-chrome-stable
-
-    strategy:
-      fail-fast: false
-      matrix:
-        # Run tests on different node versions
-        node-version: [18, 20]
+      image: cypress/browsers:node-20.18.0-chrome-130.0.6723.69-1-ff-131.0.3-edge-130.0.2849.52-1
 
     steps:
       - name: Checkout code
@@ -46,7 +40,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-screenshots-${{ matrix.node-version }}
+          name: cypress-screenshots
           path: cypress/screenshots
           retention-days: 7
 
@@ -54,6 +48,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos-${{ matrix.node-version }}
+          name: cypress-videos
           path: cypress/videos
           retention-days: 7
