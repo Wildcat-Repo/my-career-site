@@ -44,7 +44,7 @@ This document describes how to deploy the My Career Site to AWS Lightsail.
 
 2. **Git Access**
    - Ensure you can push to the repository
-   - Repository: https://git.gondoberg.com/PaddedWalls/my-career-site.git
+   - Repository: https://github.com/PaddedWalls/my-career-site.git
 
 ### On the Lightsail Instance
 
