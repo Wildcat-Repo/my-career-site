@@ -12,7 +12,7 @@ This is a static personal portfolio website for Theron Blount, served by a minim
 ```bash
 node server.js
 ```
-The server runs on `http://localhost:3000` and serves the `site/` directory.
+The server runs on `http://localhost:8000` by default and serves the `site/` directory.
 
 ### Install Dependencies
 ```bash
@@ -25,7 +25,7 @@ npm install
 - **server.js**: Minimal Express server (15 lines) that:
   - Applies strict CSP header: `default-src 'self'` to all responses
   - Serves static files from `site/` directory
-  - Runs on port 3000 (hardcoded)
+  - Runs on port 8000 by default (`process.env.PORT || 8000`)
 
 ### Site Structure
 The `site/` directory contains a multi-page static site organized by section:
@@ -80,4 +80,4 @@ The server applies `Content-Security-Policy: default-src 'self'` to prevent load
 - No client-side JavaScript is used (purely static HTML/CSS)
 
 ## Port Configuration
-The server port is hardcoded to 3000 in `server.js:3`. For deployment to platforms that provide dynamic ports (Render, Railway), this should be modified to support environment variables: `const port = process.env.PORT || 3000;`
+The server port defaults to 8000 and is configurable via the `PORT` environment variable: `const port = process.env.PORT || 8000;` (defined in `server.js:3`).

@@ -19,13 +19,12 @@ This document describes how to deploy the My Career Site to AWS Lightsail.
 **Instance Details:**
 - **Platform:** AWS Lightsail
 - **OS:** Debian 6.1.0 (Bitnami Nginx Stack)
-- **Static IP:** 44.235.108.165
-- **IPv6:** 2600:1f13:63d:7500:c175:6f68:999c:40b3
-- **SSH User:** bitnami
-- **SSH Key:** ~/.aws/LightsailDefaultKey-us-west-2.pem
+- **Static IP:** Set via `LIGHTSAIL_IP` environment variable
+- **SSH User:** Set via `LIGHTSAIL_USER` environment variable (default: `bitnami`)
+- **SSH Key:** `~/.aws/LightsailDefaultKey-us-west-2.pem`
 
 **Application:**
-- **Port:** 3000
+- **Port:** 8000
 - **Directory:** /home/bitnami/apps/my-career-site
 - **Process Manager:** PM2
 - **Web Server:** Nginx (reverse proxy)
@@ -39,7 +38,7 @@ This document describes how to deploy the My Career Site to AWS Lightsail.
 1. **SSH Key Access**
    ```bash
    # Ensure your SSH key has correct permissions
-   chmod 400 ~/.aws/LightsailDefaultKey-us-west-2.pem
+   chmod 400 <SSH_KEY>
    ```
 
 2. **Git Access**
@@ -50,7 +49,7 @@ This document describes how to deploy the My Career Site to AWS Lightsail.
 
 SSH into the instance:
 ```bash
-ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165
+ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP>
 ```
 
 1. **Install Node.js (if not already installed)**
@@ -93,7 +92,7 @@ Run the local deployment script:
 
 Or manually SSH and deploy:
 ```bash
-ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165
+ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP>
 
 # On the server:
 cd /home/bitnami/apps
@@ -122,13 +121,13 @@ sudo /opt/bitnami/ctlscript.sh restart nginx
 
 ### 3. Configure Firewall
 
-Ensure port 3000 is accessible (if accessing directly):
+Ensure port 8000 is accessible (if accessing directly):
 ```bash
 # Check current rules
 sudo iptables -L
 
-# Open port 3000 (if needed for direct access)
-sudo iptables -A INPUT -p tcp --dport 3000 -j ACCEPT
+# Open port 8000 (if needed for direct access)
+sudo iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 ```
 
 Note: If using Nginx as reverse proxy, you only need port 80 (and 443 for HTTPS) open.
@@ -151,9 +150,9 @@ Note: If using Nginx as reverse proxy, you only need port 80 (and 443 for HTTPS)
 
 **Setup Required:**
 Configure these secrets in Gitea repository settings:
-- `LIGHTSAIL_SSH_KEY`: Contents of ~/.aws/LightsailDefaultKey-us-west-2.pem
-- `LIGHTSAIL_IP`: 44.235.108.165
-- `LIGHTSAIL_USER`: bitnami
+- `LIGHTSAIL_SSH_KEY`: Contents of your SSH private key file
+- `LIGHTSAIL_IP`: Your Lightsail instance static IP
+- `LIGHTSAIL_USER`: SSH username (default: `bitnami`)
 
 ### Method 2: Manual Deployment Script
 
@@ -172,7 +171,7 @@ This script will:
 
 SSH to the server and deploy manually:
 ```bash
-ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165
+ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP>
 
 cd /home/bitnami/apps/my-career-site
 git pull origin main
@@ -186,11 +185,11 @@ pm2 restart ecosystem.config.js
 
 ### Current Setup
 
-The application runs on port 3000 and Nginx proxies requests to it.
+The application runs on port 8000 and Nginx proxies requests to it.
 
 **Access URLs:**
-- Direct: http://44.235.108.165:3000
-- Via Nginx: http://44.235.108.165 (after Nginx config is applied)
+- Direct: `http://<LIGHTSAIL_IP>:8000`
+- Via Nginx: `http://<LIGHTSAIL_IP>` (after Nginx config is applied)
 
 ### Update Nginx Configuration
 
@@ -283,7 +282,7 @@ df -h
 ps aux | grep node
 
 # Check port usage
-sudo lsof -i :3000
+sudo lsof -i :8000
 ```
 
 ---
@@ -298,14 +297,14 @@ pm2 logs my-career-site --err
 ```
 
 **Common issues:**
-- Port 3000 already in use
+- Port 8000 already in use
 - Missing dependencies
 - Incorrect file permissions
 
 **Solutions:**
 ```bash
 # Kill process on port 3000
-sudo lsof -ti:3000 | xargs kill -9
+sudo lsof -ti:8000 | xargs kill -9
 
 # Reinstall dependencies
 cd /home/bitnami/apps/my-career-site
@@ -356,13 +355,13 @@ npm config get prefix
 
 **Verify SSH key:**
 ```bash
-ls -la ~/.aws/LightsailDefaultKey-us-west-2.pem
-chmod 400 ~/.aws/LightsailDefaultKey-us-west-2.pem
+ls -la <SSH_KEY>
+chmod 400 <SSH_KEY>
 ```
 
 **Test connection:**
 ```bash
-ssh -v -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165
+ssh -v -i <SSH_KEY> <USER>@<LIGHTSAIL_IP>
 ```
 
 **Check Lightsail firewall:**
@@ -439,15 +438,15 @@ exec_mode: 'cluster'
 | Task | Command |
 |------|---------|
 | Deploy latest code | `./scripts/deploy-to-lightsail.sh` |
-| Check app status | `ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165 'pm2 status'` |
-| View logs | `ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165 'pm2 logs my-career-site'` |
-| Restart app | `ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165 'pm2 restart my-career-site'` |
-| Restart Nginx | `ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165 'sudo /opt/bitnami/ctlscript.sh restart nginx'` |
+| Check app status | `ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP> 'pm2 status'` |
+| View logs | `ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP> 'pm2 logs my-career-site'` |
+| Restart app | `ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP> 'pm2 restart my-career-site'` |
+| Restart Nginx | `ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP> 'sudo /opt/bitnami/ctlscript.sh restart nginx'` |
 
 **Access Points:**
-- Direct (Node.js): http://44.235.108.165:3000
-- Via Nginx: http://44.235.108.165
-- SSH: `ssh -i ~/.aws/LightsailDefaultKey-us-west-2.pem bitnami@44.235.108.165`
+- Direct (Node.js): `http://<LIGHTSAIL_IP>:8000`
+- Via Nginx: `http://<LIGHTSAIL_IP>`
+- SSH: `ssh -i <SSH_KEY> <USER>@<LIGHTSAIL_IP>`
 
 ---
 

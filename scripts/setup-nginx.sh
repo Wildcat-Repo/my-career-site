@@ -6,9 +6,9 @@ set -e
 
 echo "🌐 Setting up Nginx for blountforceautomation.com..."
 
-# Configuration
-LIGHTSAIL_IP="44.235.108.165"
-LIGHTSAIL_USER="bitnami"
+# Configuration - set LIGHTSAIL_IP and LIGHTSAIL_USER as environment variables
+LIGHTSAIL_IP="${LIGHTSAIL_IP:?Error: LIGHTSAIL_IP environment variable is not set}"
+LIGHTSAIL_USER="${LIGHTSAIL_USER:-bitnami}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 SSH_KEY="$PROJECT_DIR/.aws/LightsailDefaultKey-us-west-2.pem"

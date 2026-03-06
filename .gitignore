@@ -45,3 +45,4 @@ cypress/downloads/
 logs/
 tmp/
 .aws/
+SESSION_SUMMARY.md
