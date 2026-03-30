@@ -141,7 +141,7 @@ describe('My Feature Tests', () => {
 ## Troubleshooting
 
 **Server not starting:**
-- Ensure port 3000 is available
+- Ensure port 8000 is available
 - Check `server.js` for errors
 
 **Tests timing out:**
