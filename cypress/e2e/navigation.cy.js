@@ -6,7 +6,7 @@ describe('Navigation Tests', () => {
   });
 
   it('TC-NAV-001: Should load the home page', () => {
-    cy.url().should('include', 'localhost:3000');
+    cy.url().should('include', 'localhost:8000');
     cy.title().should('contain', 'Theron Blount');
     cy.get('h1').should('contain', 'Welcome');
   });
