@@ -83,7 +83,7 @@ describe('Page Content Validation Tests', () => {
     it('Should display all four projects', () => {
       cy.get('.project-card').eq(0).should('contain', 'SpinJockey Network');
       cy.get('.project-card').eq(1).should('contain', 'Bookshare');
-      cy.get('.project-card').eq(2).should('contain', 'NFL Sports Analytics');
+      cy.get('.project-card').eq(2).should('contain', 'NFL Stats ETL');
       cy.get('.project-card').eq(3).should('contain', 'Development Server');
     });
   });
