@@ -26,7 +26,7 @@
         <h2>Project Overview</h2>
         <p><strong>Objective:</strong> Build a comprehensive ETL pipeline for collecting, processing, and analyzing NFL player statistics using Apache Airflow for workflow orchestration. The system scrapes data from NFL.com, processes player statistics across multiple categories, and provides analytics capabilities including machine learning model evaluation.</p>
         
-        <p><strong>Innovation:</strong> Historical year parameter support (2000-2024) enables time-series analysis and year-over-year performance comparisons with robust CI/CD integration.</p>
+        <p><strong>Innovation:</strong> Historical year parameter support (2000-2025) enables time-series analysis and year-over-year performance comparisons with robust CI/CD integration.</p>
 
         <div style="margin-top: 15px;">
             <h4>Source Repository</h4>
@@ -37,11 +37,11 @@
         
         <div class="metrics">
             <div class="metric">
-                <div class="metric-value">25</div>
+                <div class="metric-value">26</div>
                 <div class="metric-label">Years of Data</div>
             </div>
             <div class="metric">
-                <div class="metric-value">4</div>
+                <div class="metric-value">5</div>
                 <div class="metric-label">Stat Categories</div>
             </div>
             <div class="metric">
@@ -73,27 +73,30 @@
             <!-- Year Parameter Selection -->
             <rect x="300" y="120" width="140" height="40" fill="#e8eaf6" stroke="#3949ab" stroke-width="2" rx="8" ry="8"/>
             <text x="370" y="145" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Year Parameter</text>
-            <text x="370" y="165" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">(2000-2024)</text>
+            <text x="370" y="165" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">(2000-2025)</text>
             
             <!-- Extract Tasks -->
             <rect x="100" y="230" width="600" height="70" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="8" ry="8"/>
             <text x="400" y="255" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#388e3c">Extract</text>
             
             <!-- Extract Sub-tasks -->
-            <rect x="120" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
-            <text x="170" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Passing</text>
-            
-            <rect x="230" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
-            <text x="280" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Rushing</text>
-            
-            <rect x="340" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
-            <text x="390" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Receiving</text>
-            
-            <rect x="450" y="270" width="100" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
-            <text x="500" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Scrape Defense</text>
-            
-            <rect x="560" y="270" width="120" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
-            <text x="620" y="287" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Player Data Collection</text>
+            <rect x="110" y="270" width="90" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="155" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Scrape Passing</text>
+
+            <rect x="210" y="270" width="90" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="255" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Scrape Rushing</text>
+
+            <rect x="310" y="270" width="90" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="355" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Scrape Receiving</text>
+
+            <rect x="410" y="270" width="90" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="455" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Scrape Scoring</text>
+
+            <rect x="510" y="270" width="90" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="555" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Scrape Tackles</text>
+
+            <rect x="610" y="270" width="80" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="650" y="287" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">Player Data</text>
             
             <!-- Transform Tasks -->
             <rect x="100" y="340" width="600" height="70" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
@@ -155,8 +158,8 @@
             <h3>🔍 Extract Phase</h3>
             <ul>
                 <li><strong>Web Scraping:</strong> Selenium-based data collection</li>
-                <li><strong>Multi-Category:</strong> Passing, Rushing, Receiving, Defense</li>
-                <li><strong>Year Selection:</strong> Historical data from 2000-2024</li>
+                <li><strong>Multi-Category:</strong> Passing, Rushing, Receiving, Scoring, Tackles</li>
+                <li><strong>Year Selection:</strong> Historical data from 2000-2025</li>
                 <li><strong>Async Processing:</strong> Concurrent data retrieval</li>
                 <li><strong>Error Handling:</strong> Robust retry mechanisms</li>
             </ul>
@@ -187,7 +190,7 @@
 
     <div class="year-feature">
         <h2>🎯 Historical Year Parameter Feature</h2>
-        <p><strong>Innovation Highlight:</strong> The pipeline supports collecting NFL statistics for any year between 2000-2024, enabling comprehensive historical analysis and trend identification.</p>
+        <p><strong>Innovation Highlight:</strong> The pipeline supports collecting NFL statistics for any year between 2000-2025, enabling comprehensive historical analysis and trend identification.</p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
             <div>
@@ -292,7 +295,7 @@
 
     <div style="background: linear-gradient(135deg, #1976d2, #42a5f5); color: white; padding: 25px; border-radius: 10px; text-align: center; margin-top: 30px;">
         <h2>🎯 Project Impact</h2>
-        <p><strong>Automated NFL data collection pipeline</strong> enabling comprehensive statistical analysis across 25 years of historical data. The system supports real-time analytics, predictive modeling, and longitudinal performance studies with robust cloud integration and monitoring capabilities.</p>
+        <p><strong>Automated NFL data collection pipeline</strong> enabling comprehensive statistical analysis across 26 years of historical data. The system supports real-time analytics, predictive modeling, and longitudinal performance studies with robust cloud integration and monitoring capabilities.</p>
         
         <p><strong>Technical Achievement:</strong> Successfully integrated modern data engineering practices with sports analytics, creating a scalable and maintainable solution for complex data processing workflows.</p>
     </div>
