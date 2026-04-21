@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandant: AI Test Automation as a Service (AITaaS)</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about/">About</a>
+            <a href="../portfolio/">Portfolio</a>
+            <a href="../research/">Research</a>
+            <a href="../contact/">Contact</a>
+        </nav>
+    </header>
+    <main>
+    <div class="header">
+        <h1>Commandant</h1>
+        <p>AI Test Automation as a Service (AITaaS) &mdash; a QA Engineering Framework</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Build a QA engineering framework that treats large-language-model capability as a first-class test automation primitive &mdash; not a novelty &mdash; producing measurable coverage gains, actionable PR review, and repeatable quality assessment against real codebases.</p>
+
+        <p><strong>Three Enterprise-Grade AI Testing Patterns:</strong></p>
+        <ol>
+            <li><strong>AI Scenario Generation</strong> &mdash; Claude generates Playwright end-to-end test scenario matrices from user story descriptions, systematically expanding edge-case coverage beyond what manual test design typically produces.</li>
+            <li><strong>AI Code Review in CI/CD</strong> &mdash; A Gitea Actions workflow step analyzes pull requests against defined QA standards and posts structured, actionable feedback as PR comments.</li>
+            <li><strong>Quality Engineering Assessment</strong> &mdash; Deterministic validators combined with Claude API scoring assess codebases across eight quality dimensions (Architecture, Code Organization, Testing, Security, Documentation, DevOps/CI, Production Readiness, and Overall Quality), producing HTML reports with JSON sidecars and trend tracking.</li>
+        </ol>
+
+        <p><strong>Platform Basis:</strong> Built on <code>pytest</code> + <code>playwright</code> (Python) with the Anthropic SDK, designed to grow from a single application target into a multi-application AITaaS platform where each target gets its own test module, marker, and CI service step without framework changes.</p>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">3</div>
+                <div class="metric-label">AI Testing Patterns</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">8</div>
+                <div class="metric-label">Quality Dimensions</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Python<br>3.13</div>
+                <div class="metric-label">Runtime</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Claude<br>API</div>
+                <div class="metric-label">AI Layer</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>Framework Architecture</h2>
+        <div class="svg-container">
+        <svg viewBox="0 0 1000 600" style="width: 1000px; height: 600px;">
+            <rect width="1000" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+
+            <!-- CI Trigger Layer -->
+            <rect x="100" y="60" width="800" height="70" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="90" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1976d2">Gitea Actions CI/CD Triggers</text>
+            <text x="500" y="112" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">ci.yml (lint + static) &nbsp; | &nbsp; e2e.yml (Playwright suite) &nbsp; | &nbsp; ai_review.yml (PR review)</text>
+
+            <!-- Deterministic Layer -->
+            <rect x="100" y="170" width="800" height="90" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="198" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#388e3c">Deterministic Validators (always run first)</text>
+
+            <rect x="130" y="215" width="220" height="35" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="240" y="238" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">validators.py &mdash; syntax, selectors, markers</text>
+
+            <rect x="380" y="215" width="240" height="35" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="500" y="238" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">quality_validators.py &mdash; structure, security</text>
+
+            <rect x="650" y="215" width="220" height="35" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="4" ry="4"/>
+            <text x="760" y="238" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">credential scans, CI checks</text>
+
+            <!-- AI Layer -->
+            <rect x="100" y="300" width="800" height="130" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="328" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#8e24aa">AI-Augmented Layer &mdash; Anthropic SDK (claude_client.py)</text>
+
+            <rect x="130" y="350" width="240" height="65" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="5" ry="5"/>
+            <text x="250" y="372" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Scenario Generation</text>
+            <text x="250" y="390" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">generate_scenarios.py</text>
+            <text x="250" y="405" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">story &rarr; Playwright tests</text>
+
+            <rect x="380" y="350" width="240" height="65" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="5" ry="5"/>
+            <text x="500" y="372" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">PR Review</text>
+            <text x="500" y="390" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">review_pr.py</text>
+            <text x="500" y="405" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">diff &rarr; Gitea comment</text>
+
+            <rect x="630" y="350" width="240" height="65" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="5" ry="5"/>
+            <text x="750" y="372" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Quality Assessment</text>
+            <text x="750" y="390" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">assess_quality.py</text>
+            <text x="750" y="405" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">8-dim scoring + HTML</text>
+
+            <!-- Output Layer -->
+            <rect x="100" y="470" width="800" height="90" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="498" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#f57c00">Outputs</text>
+
+            <rect x="130" y="515" width="220" height="35" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+            <text x="240" y="538" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Generated test files (aiigenerated/)</text>
+
+            <rect x="380" y="515" width="240" height="35" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+            <text x="500" y="538" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">PR comments via Gitea API</text>
+
+            <rect x="650" y="515" width="220" height="35" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="4" ry="4"/>
+            <text x="760" y="538" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">HTML + JSON report sidecars</text>
+
+            <!-- Flow lines -->
+            <line x1="500" y1="130" x2="500" y2="170" stroke="#666" stroke-width="2"/>
+            <polygon points="500,170 495,160 505,160" fill="#666"/>
+
+            <line x1="500" y1="260" x2="500" y2="300" stroke="#666" stroke-width="2"/>
+            <polygon points="500,300 495,290 505,290" fill="#666"/>
+            <text x="565" y="285" font-family="Arial" font-size="11" text-anchor="middle" fill="#555" font-style="italic">(only if validators pass)</text>
+
+            <line x1="500" y1="430" x2="500" y2="470" stroke="#666" stroke-width="2"/>
+            <polygon points="500,470 495,460 505,460" fill="#666"/>
+        </svg>
+        </div>
+    </div>
+
+    <div class="user-roles">
+        <h2>&#128161; Design Principle: Rule-Based Before AI</h2>
+        <p><strong>Every AI-powered step is preceded by deterministic validation that runs fast, is free, and produces no false negatives on well-formed input.</strong> AI augments coverage &mdash; it does not replace structural correctness. This keeps AI costs bounded, CI fast when changes are clean, and diagnosis obvious when something fails: if a deterministic validator rejects a diff, the PR author sees a precise, reproducible reason without any model in the loop.</p>
+
+        <div class="role-hierarchy">
+            <div class="role-card">
+                <h4>Layer 1</h4>
+                <p><strong>Deterministic Validators</strong> &mdash; syntax, selectors, credentials, markers</p>
+            </div>
+            <div class="role-card">
+                <h4>Layer 2</h4>
+                <p><strong>Quality Validators</strong> &mdash; codebase structure, security, CI hygiene</p>
+            </div>
+            <div class="role-card">
+                <h4>Layer 3</h4>
+                <p><strong>AI-Augmented</strong> &mdash; scenario generation, PR review, quality scoring</p>
+            </div>
+            <div class="role-card">
+                <h4>Layer 4</h4>
+                <p><strong>CI Enforcement</strong> &mdash; Gitea Actions workflows with quality gates</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-section auth-feature">
+            <h3>&#129302; AI Scenario Generation</h3>
+            <ul>
+                <li><strong>Input:</strong> a plain-language user story ("User can reset their password via email link")</li>
+                <li><strong>Output:</strong> a Playwright test file in <code>commandant_tests/ai_generated/</code> with happy-path plus enumerated edge cases</li>
+                <li><strong>Prompt design:</strong> structured templates in <code>prompts/scenario_generation.py</code> constrain Claude to produce valid pytest syntax, appropriate selectors, and assertions that match the target application's page objects</li>
+                <li><strong>Coverage delta:</strong> <code>compare_coverage.py</code> diffs baseline vs AI-augmented runs to surface where AI extends real coverage rather than duplicating existing tests</li>
+            </ul>
+        </div>
+
+        <div class="feature-section content-feature">
+            <h3>&#128221; AI Code Review in CI/CD</h3>
+            <ul>
+                <li><strong>Trigger:</strong> <code>ai_review.yml</code> on <code>pull_request</code> events</li>
+                <li><strong>Action:</strong> <code>review_pr.py</code> fetches the diff, sends it through Claude against defined QA standards, and posts structured feedback as a Gitea PR comment</li>
+                <li><strong>Scope:</strong> calls out missing tests, questionable security assumptions, unchecked inputs, and architectural concerns &mdash; not style nits</li>
+                <li><strong>Signal/noise:</strong> feedback is structured (headings, severity, file/line references) so reviewers can triage quickly rather than wading through paragraph blobs</li>
+            </ul>
+        </div>
+
+        <div class="feature-section admin-feature">
+            <h3>&#128202; Quality Engineering Assessment</h3>
+            <ul>
+                <li><strong>Eight dimensions:</strong> Architecture, Code Organization, Testing, Security, Documentation, DevOps/CI, Production Readiness, and Overall Quality</li>
+                <li><strong>Deterministic-only mode:</strong> <code>--skip-ai</code> runs the full validator suite without an API key, useful for fast local checks and for users without Anthropic credentials</li>
+                <li><strong>Full mode:</strong> deterministic validators run first; then Claude scores each dimension with a rubric-bound prompt in <code>prompts/quality_assessment.py</code></li>
+                <li><strong>Outputs:</strong> self-contained HTML report with JSON sidecar for programmatic consumption; trend tracking across repeat runs; quality gates via <code>--min-score</code> for CI blocking</li>
+                <li><strong>Stack-aware analyzers:</strong> <code>stacks/rails.py</code>, <code>stacks/generic.py</code> with an abstract <code>StackAnalyzer</code> base &mdash; new stacks plug in without framework changes</li>
+            </ul>
+        </div>
+
+        <div class="feature-section analytics-feature">
+            <h3>&#128736; Multi-Application Extension (AITaaS)</h3>
+            <ul>
+                <li><strong>Adding a target:</strong> one module under <code>commandant_tests/</code>, one URL in <code>.env.example</code>, one marker in <code>pytest.ini</code>, one service step in <code>e2e.yml</code></li>
+                <li><strong>Phase 1 application:</strong> the SpinJockey Network Rails 8 platform is the inaugural target, exercising all three AI patterns end-to-end</li>
+                <li><strong>Phase roadmap:</strong> baseline hand-authored tests, then AI-generated augmentation, then black-box external assessment of deployed applications</li>
+                <li><strong>Portability:</strong> <code>docs/GITLAB_TRANSLATION_GUIDE.md</code> maps the Gitea Actions workflow onto GitLab CI, proving the pipeline is not Gitea-bound</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <div class="tech-category rails-backend">
+            <h3>&#128013; Python Test Layer</h3>
+            <ul>
+                <li><strong>pytest:</strong> orchestration, fixtures, markers, coverage</li>
+                <li><strong>Playwright (Python):</strong> headless Chromium for E2E</li>
+                <li><strong>Anthropic SDK:</strong> sync client in <code>claude_client.py</code></li>
+                <li><strong>conftest.py:</strong> shared fixtures mirroring the target app's test conventions</li>
+            </ul>
+        </div>
+
+        <div class="tech-category frontend-tech">
+            <h3>&#128295; CLI Tooling</h3>
+            <ul>
+                <li><strong>generate_scenarios.py:</strong> user story &rarr; Playwright test</li>
+                <li><strong>review_pr.py:</strong> PR diff &rarr; Gitea comment</li>
+                <li><strong>assess_quality.py:</strong> codebase &rarr; scored report</li>
+                <li><strong>compare_coverage.py:</strong> baseline vs AI-augmented delta</li>
+            </ul>
+        </div>
+
+        <div class="tech-category security-tech">
+            <h3>&#128272; Safety &amp; Cost Controls</h3>
+            <ul>
+                <li><strong>Validators first:</strong> AI never runs against malformed input</li>
+                <li><strong>Structured prompts:</strong> rubric-bound, deterministic output shape</li>
+                <li><strong>Credential scans:</strong> blocks inadvertent secret exfiltration</li>
+                <li><strong>Skip-AI mode:</strong> all validators available without API key</li>
+            </ul>
+        </div>
+
+        <div class="tech-category deployment-tech">
+            <h3>&#128230; Packaging &amp; Deployment</h3>
+            <ul>
+                <li><strong>Dockerfile:</strong> production CLI image (Python 3.13-slim)</li>
+                <li><strong>Dockerfile.e2e:</strong> CI image &mdash; Ruby + Python + Playwright + Anthropic</li>
+                <li><strong>docker-compose.prod.yml:</strong> portal + shared reports volume</li>
+                <li><strong>docker-compose.test.yml:</strong> target app + Postgres for E2E runs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-types">
+        <h2>&#128218; Companion: Commandant Report Portal</h2>
+        <p>Commandant generates assessment reports as HTML + JSON sidecars. The <strong>Commandant Report Portal</strong> is the companion web application that turns that output stream into an operable dashboard &mdash; browse, filter, score-track over time, and trigger new assessments from a UI rather than a shell.</p>
+
+        <p>The two projects are deliberately separated: Commandant is a CLI framework that runs in CI and produces artifacts; the Portal is a Flask web app that consumes those artifacts. CI/CD pipelines push reports to the Portal via an authenticated API, and human users browse the history through the web UI. Neither depends on the other at runtime &mdash; Commandant can run without the Portal, and the Portal can serve any compatible report directory.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div>
+                <h4>&#128202; Report Dashboard</h4>
+                <ul>
+                    <li>Sortable index of assessment runs</li>
+                    <li>Score badges and severity counts at a glance</li>
+                    <li>Project filtering for multi-app scale</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128203; Report Detail</h4>
+                <ul>
+                    <li>Per-dimension score tiles</li>
+                    <li>Rendered HTML preview + source toggle</li>
+                    <li>Export to JSON, HTML, and Print-to-PDF</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128200; Trend Visualization</h4>
+                <ul>
+                    <li>Per-project score charts over time (Chart.js)</li>
+                    <li>Spot regressions across runs</li>
+                    <li>Correlate score movements with commits</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128274; Role-Based Access</h4>
+                <ul>
+                    <li>Admin and Viewer roles enforced server-side</li>
+                    <li>Admin-only user CRUD + assessment trigger</li>
+                    <li>Self-service profile / password change for all users</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128640; CI Integration</h4>
+                <ul>
+                    <li>REST API for report upload with API-key auth</li>
+                    <li>One-step <code>curl</code> from any CI provider</li>
+                    <li>Admin UI to trigger Gitea Actions assessment runs</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128737; Security Posture</h4>
+                <ul>
+                    <li>PBKDF2 password hashing (Werkzeug), signed sessions</li>
+                    <li>CSRF protection on all forms (API upload exempt, API-key)</li>
+                    <li>Flask-Limiter rate limit on POST /login</li>
+                    <li>Account lockout: 15 minutes after 5 failed attempts</li>
+                    <li>Forced password change for seeded users on first login</li>
+                    <li>HSTS + secure cookies under <code>FORCE_HTTPS=true</code></li>
+                    <li>Path-traversal protection, system-path blocklist</li>
+                    <li>File extension blocklist: <code>.db</code>, <code>.sqlite</code>, <code>.key</code>, <code>.pem</code>, <code>.env</code></li>
+                    <li>MIME validation on uploads; sandboxed iframes for HTML preview</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px;"><strong>Portal Stack:</strong> Flask, SQLAlchemy, Flask-WTF (CSRF), Flask-Limiter (rate limiting), gunicorn (WSGI). Sixty tests cover authentication, user CRUD, role enforcement, profile management, rate limiting, account lockout, CSRF, upload API validation, and security enforcement.</p>
+    </div>
+
+    <div class="implementation-highlights">
+        <h2>&#127919; Engineering Highlights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>&#129504; AI with Guardrails</h4>
+                <ul>
+                    <li>Deterministic layer before every AI call &mdash; predictable behavior, bounded cost</li>
+                    <li>Rubric-bound prompts produce structured, parseable output &mdash; no regex fishing on free-text</li>
+                    <li>Skip-AI mode means the framework is still useful without an Anthropic key</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128295; QA Engineering Discipline</h4>
+                <ul>
+                    <li>Eight quality dimensions are the same rubric a human reviewer would apply</li>
+                    <li>Coverage delta is measured, not asserted &mdash; if AI-generated tests don't expand coverage, the pipeline tells you</li>
+                    <li>Stack-aware analyzers with a clean base class so adding Rails, Django, Node is routine</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#9881;&#65039; CI Integration</h4>
+                <ul>
+                    <li>Three self-contained Gitea Actions workflows: lint, E2E, AI review</li>
+                    <li>Each workflow is triggered by the commit lifecycle event that justifies its cost</li>
+                    <li>Reports are durable artifacts: HTML for humans, JSON sidecars for downstream tools</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128230; Extensibility</h4>
+                <ul>
+                    <li>Adding a new application target: five file edits, zero framework changes</li>
+                    <li>Portal + Framework are deployed independently but integrate through a documented contract</li>
+                    <li>GitLab CI translation guide demonstrates pipeline portability</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-impact">
+        <h2>&#127919; Project Impact</h2>
+        <p><strong>Treats AI as a test-automation primitive, not a demo.</strong> The framework is built for the operational reality of CI/CD: it has cost controls, deterministic fallback, structured outputs, and durable artifacts. It doesn't assume infinite API budget or ideal inputs.</p>
+
+        <p><strong>Closes the PR-review feedback loop with evidence.</strong> Rather than opining about code, it produces rubric-based scores across eight quality dimensions and tracks the scores over time. Teams can see whether quality is trending up or down, not just whether the build is green.</p>
+
+        <p><strong>Demonstrates AITaaS architecture end-to-end.</strong> The framework + portal combination shows how AI-driven testing should be productized: a CLI that runs in CI, a web UI that consumes the artifacts, RESTful integration between them, role-based access for who can trigger and view, and security hygiene appropriate for a shared tool.</p>
+    </div>
+    </main>
+    <footer>
+        <p>&copy; <time datetime="2026">2026</time> Theron Blount. All rights reserved.</p>
+    </footer>
+</body>
+</html>
