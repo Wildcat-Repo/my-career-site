@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenplay Editor: Rails Mountable Engine with TipTap/ProseMirror</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about/">About</a>
+            <a href="../portfolio/">Portfolio</a>
+            <a href="../research/">Research</a>
+            <a href="../contact/">Contact</a>
+        </nav>
+    </header>
+    <main>
+    <div class="header">
+        <h1>Screenplay Editor</h1>
+        <p>Professional Web-Based Screenplay Authoring as a Rails Mountable Engine</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Build a drop-in screenplay authoring experience that any Rails 8 application can mount under a URL prefix, with the editing experience shipped as a first-class React + TypeScript + TipTap bundle and the server-side lifecycle managed by the host app's existing authentication, authorization, and background job stack.</p>
+
+        <p><strong>Distribution Model:</strong> Packaged as a Ruby gem and published to a self-hosted Gitea Package Registry. Host applications consume it the same way they would consume any gem &mdash; add to the Gemfile, bundle install, mount the engine, run the migrations.</p>
+
+        <p><strong>Industry Format:</strong> Follows the April Screenplay Format convention &mdash; Courier 12, fixed margins, &#126;55 lines per page, proper indentation rules per line type. Plain-text import/export uses the same convention so documents round-trip cleanly between this editor and any April-compatible tool. PDF export produces vector output with correct pagination.</p>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">v0.1.1</div>
+                <div class="metric-label">Current Release</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Rails 8<br>+ React</div>
+                <div class="metric-label">Host Integration</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">186</div>
+                <div class="metric-label">RSpec Examples</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">4</div>
+                <div class="metric-label">npm Packages</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>Engine Architecture</h2>
+        <div class="svg-container">
+        <svg viewBox="0 0 1000 600" style="width: 1000px; height: 600px;">
+            <rect width="1000" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+
+            <!-- Host Rails App -->
+            <rect x="80" y="60" width="840" height="70" fill="#ffebee" stroke="#cc0000" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="88" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#cc0000">Host Rails 8 Application</text>
+            <text x="500" y="110" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">User auth, authorization, session, Solid Queue / Solid Cable / Solid Cache / PostgreSQL</text>
+
+            <!-- Engine mount -->
+            <text x="500" y="148" font-family="Arial" font-size="12" text-anchor="middle" fill="#666" font-style="italic">mount ScreenplayEditor::Engine =&gt; "/screenplays"</text>
+            <line x1="500" y1="130" x2="500" y2="160" stroke="#666" stroke-width="2"/>
+            <polygon points="500,160 495,150 505,150" fill="#666"/>
+
+            <!-- Engine Layer -->
+            <rect x="80" y="170" width="840" height="140" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="198" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1976d2">ScreenplayEditor Engine (Ruby gem)</text>
+
+            <rect x="110" y="215" width="190" height="80" fill="#bbdefb" stroke="#1976d2" stroke-width="1" rx="4" ry="4"/>
+            <text x="205" y="238" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#333">Controllers</text>
+            <text x="205" y="258" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">scripts, versions,</text>
+            <text x="205" y="274" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">comments, imports</text>
+            <text x="205" y="288" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">REST + JSON</text>
+
+            <rect x="310" y="215" width="190" height="80" fill="#bbdefb" stroke="#1976d2" stroke-width="1" rx="4" ry="4"/>
+            <text x="405" y="238" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#333">Models</text>
+            <text x="405" y="258" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Script, ScriptVersion,</text>
+            <text x="405" y="274" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">ScriptComment</text>
+            <text x="405" y="288" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">PG JSONB / SQLite TEXT</text>
+
+            <rect x="510" y="215" width="190" height="80" fill="#bbdefb" stroke="#1976d2" stroke-width="1" rx="4" ry="4"/>
+            <text x="605" y="238" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#333">Jobs</text>
+            <text x="605" y="258" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">PDF export,</text>
+            <text x="605" y="274" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">text export/import</text>
+            <text x="605" y="288" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Solid Queue</text>
+
+            <rect x="710" y="215" width="190" height="80" fill="#bbdefb" stroke="#1976d2" stroke-width="1" rx="4" ry="4"/>
+            <text x="805" y="238" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#333">Policies</text>
+            <text x="805" y="258" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">Pundit-based</text>
+            <text x="805" y="274" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">host overrideable</text>
+            <text x="805" y="288" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">can_access?(role)</text>
+
+            <!-- TypeScript Packages Layer -->
+            <rect x="80" y="340" width="840" height="110" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="368" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#8e24aa">Framework-Agnostic TypeScript Packages</text>
+
+            <rect x="110" y="385" width="190" height="50" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="205" y="406" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">screenplay-model</text>
+            <text x="205" y="422" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">types, schema, validation</text>
+
+            <rect x="310" y="385" width="190" height="50" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="405" y="406" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">screenplay-parse</text>
+            <text x="405" y="422" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">text + PDF import</text>
+
+            <rect x="510" y="385" width="190" height="50" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="605" y="406" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">screenplay-export</text>
+            <text x="605" y="422" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">text + HTML-for-PDF</text>
+
+            <rect x="710" y="385" width="190" height="50" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="805" y="406" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">screenplay-cli</text>
+            <text x="805" y="422" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">command-line tool</text>
+
+            <!-- Frontend Layer -->
+            <rect x="80" y="480" width="840" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="508" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#f57c00">Editor Frontend</text>
+            <text x="500" y="528" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">React + TypeScript + TipTap (ProseMirror)</text>
+            <text x="500" y="545" font-family="Arial" font-size="11" text-anchor="middle" fill="#555">Scene headings &bull; action &bull; character &bull; dialogue &bull; parentheticals &bull; transitions &bull; shots &bull; notes &bull; dual dialogue</text>
+
+            <!-- Connection from Engine to Packages and Frontend -->
+            <line x1="500" y1="310" x2="500" y2="340" stroke="#666" stroke-width="2"/>
+            <polygon points="500,340 495,330 505,330" fill="#666"/>
+            <line x1="500" y1="450" x2="500" y2="480" stroke="#666" stroke-width="2"/>
+            <polygon points="500,480 495,470 505,470" fill="#666"/>
+        </svg>
+        </div>
+    </div>
+
+    <div class="user-roles">
+        <h2>&#128100; Authorization: Pundit Policies with Host Override</h2>
+        <p>The engine ships a Pundit policy set keyed to industry-recognizable screenplay roles. The host app's <code>User</code> model implements a single method &mdash; <code>can_access?(role_name)</code> &mdash; and the engine wires the rest automatically. Hosts can override individual policies in <code>app/policies/screenplay_editor/</code> to layer project-based or team-based logic on top of the defaults.</p>
+
+        <div class="role-hierarchy">
+            <div class="role-card">
+                <h4>Guest</h4>
+                <p>View public scripts only</p>
+            </div>
+            <div class="role-card">
+                <h4>Registered</h4>
+                <p>Create scripts, view own</p>
+            </div>
+            <div class="role-card">
+                <h4>Premium</h4>
+                <p>Edit + PDF/text export</p>
+            </div>
+            <div class="role-card">
+                <h4>Industry</h4>
+                <p>Full editing, priority support</p>
+            </div>
+            <div class="role-card">
+                <h4>Collaborator</h4>
+                <p>Project-based collaboration</p>
+            </div>
+            <div class="role-card">
+                <h4>Admin</h4>
+                <p>Full access to all scripts</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-section auth-feature">
+            <h3>&#9997;&#65039; Authoring Experience</h3>
+            <ul>
+                <li><strong>Line types:</strong> scene headings, action, character, dialogue, parentheticals, transitions, shots, notes, dual dialogue</li>
+                <li><strong>Formatting enforced by the editor:</strong> Courier 12, fixed margins, &#126;55 lines per page, proper indent rules per line type</li>
+                <li><strong>Scene numbering:</strong> automatic, renumbers as scenes are inserted / reordered</li>
+                <li><strong>Basic revisions:</strong> version tracking, audit trail, activity log</li>
+                <li><strong>Title page generator:</strong> produces a correctly-formatted cover sheet</li>
+            </ul>
+        </div>
+
+        <div class="feature-section content-feature">
+            <h3>&#128228; Import / Export</h3>
+            <ul>
+                <li><strong>Plain-text import:</strong> April-style parser &mdash; round-trip clean with external tools</li>
+                <li><strong>PDF import:</strong> text-based PDF parser with confidence scoring</li>
+                <li><strong>Plain-text export:</strong> April-style output</li>
+                <li><strong>Vector PDF export:</strong> correct pagination; rendered via a Playwright-based Node.js sidecar</li>
+                <li><strong>Async by design:</strong> exports and imports run as Solid Queue background jobs so the editor never blocks</li>
+            </ul>
+        </div>
+
+        <div class="feature-section admin-feature">
+            <h3>&#128172; Review Workflow</h3>
+            <ul>
+                <li><strong>Inline comments:</strong> anchored to document ranges (ProseMirror positions persisted as JSONB)</li>
+                <li><strong>Suggestions + resolutions:</strong> comments can be resolved / unresolved, preserving history</li>
+                <li><strong>Watermarks:</strong> on exported PDFs, configurable per script</li>
+                <li><strong>Draft &rarr; Review &rarr; Final &rarr; Archived status progression</strong></li>
+                <li><strong>Admin oversight:</strong> host app's existing admin role sees all scripts and comments</li>
+            </ul>
+        </div>
+
+        <div class="feature-section analytics-feature">
+            <h3>&#128230; Distribution</h3>
+            <ul>
+                <li><strong>Gitea Package Registry:</strong> published as a standard Ruby gem</li>
+                <li><strong>Automated publish:</strong> push to <code>main</code> triggers the publish workflow on a self-hosted Gitea Actions runner</li>
+                <li><strong>Local development:</strong> alternative <code>path:</code> source for iterating against a host app without publishing</li>
+                <li><strong>Test coverage:</strong> 186 RSpec examples &mdash; model specs, policy specs (all roles), job specs, request specs, integration specs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <div class="tech-category rails-backend">
+            <h3>&#128013; Rails Engine Side</h3>
+            <ul>
+                <li><strong>Rails 8 mountable engine:</strong> integer PKs, migrations, policies, jobs, controllers, views</li>
+                <li><strong>PostgreSQL:</strong> JSONB for ProseMirror document storage and comment range anchors</li>
+                <li><strong>SQLite parity:</strong> TEXT-with-serialization for JSONB columns, enabling lightweight test configs</li>
+                <li><strong>ActiveStorage:</strong> PDF attachments for exported documents</li>
+                <li><strong>Solid Queue:</strong> background jobs &mdash; no Redis dependency</li>
+                <li><strong>Solid Cable:</strong> real-time comment updates without Redis</li>
+                <li><strong>Solid Cache:</strong> parse/export caches without Redis</li>
+                <li><strong>Pundit:</strong> role-based policies with host-overrideable defaults</li>
+            </ul>
+        </div>
+
+        <div class="tech-category frontend-tech">
+            <h3>&#128187; Editor Frontend</h3>
+            <ul>
+                <li><strong>React + TypeScript:</strong> type-safe component model</li>
+                <li><strong>TipTap (ProseMirror):</strong> extensible rich-text editor with a clean extension API</li>
+                <li><strong>Custom node types:</strong> one per screenplay line category with formatting rules</li>
+                <li><strong>Vite build:</strong> engine-bundled asset pipeline, mounted through Rails static serving</li>
+            </ul>
+        </div>
+
+        <div class="tech-category security-tech">
+            <h3>&#128191; Framework-Agnostic Packages</h3>
+            <ul>
+                <li><strong>@studio/screenplay-model:</strong> types, schema, validation</li>
+                <li><strong>@studio/screenplay-parse:</strong> text and PDF import</li>
+                <li><strong>@studio/screenplay-export:</strong> text and HTML-for-PDF</li>
+                <li><strong>@studio/screenplay-cli:</strong> command-line conversions</li>
+                <li><strong>Isolation:</strong> core logic usable outside Rails &mdash; CLI batch conversions, external tooling, headless tests</li>
+            </ul>
+        </div>
+
+        <div class="tech-category deployment-tech">
+            <h3>&#128640; Operations</h3>
+            <ul>
+                <li><strong>Gitea Actions CI:</strong> test + lint + security audit + gem build</li>
+                <li><strong>Automated publishing:</strong> push to <code>main</code> &rarr; build &rarr; publish to Gitea Package Registry</li>
+                <li><strong>Playwright PDF sidecar:</strong> chromium-based, vector output, locked fonts</li>
+                <li><strong>Font bundling:</strong> Courier Prime under SIL OFL for license-clean distribution</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="implementation-highlights">
+        <h2>&#128295; Engineering Highlights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>&#128230; Engine + Packages Separation</h4>
+                <ul>
+                    <li>Core screenplay logic lives in framework-agnostic TypeScript packages with their own tests</li>
+                    <li>Rails engine is a thin integration layer: controllers, models, jobs, policies</li>
+                    <li>CLI tool proves the core packages work outside Rails</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128196; Industry Format Fidelity</h4>
+                <ul>
+                    <li>April Screenplay Format: Courier 12, fixed margins, proper indents</li>
+                    <li>Plain-text round-trips with external April-compatible tools</li>
+                    <li>PDF export is vector with correct pagination &mdash; not a screenshot</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128736; Host App Friendliness</h4>
+                <ul>
+                    <li>One-line mount: <code>mount ScreenplayEditor::Engine =&gt; "/screenplays"</code></li>
+                    <li>Single method contract on User model: <code>can_access?(role_name)</code></li>
+                    <li>Policies overridable per-host without forking the engine</li>
+                    <li>No Redis dependency: Solid Queue / Cable / Cache throughout</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128202; Test Discipline</h4>
+                <ul>
+                    <li>186 RSpec examples across models, policies, jobs, requests, integration</li>
+                    <li>All six user roles tested against every policy action</li>
+                    <li>Import/export jobs exercised end-to-end in specs</li>
+                    <li>CI runs on every push to <code>main</code> or <code>develop</code> and on PRs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-impact">
+        <h2>&#127919; Project Impact</h2>
+        <p><strong>Ships a professional screenplay editor as reusable infrastructure.</strong> Any Rails 8 + Solid Stack application can mount this engine and get industry-format screenplay authoring, review, and export &mdash; without rebuilding the editor, parser, or PDF pipeline from scratch.</p>
+
+        <p><strong>Demonstrates end-to-end gem productization.</strong> From source, to CI, to versioned releases published automatically to a self-hosted package registry, the project shows the full distribution lifecycle that a production internal tool needs &mdash; not just the code.</p>
+
+        <p><strong>Integration target:</strong> the inaugural consumer is the SpinJockey Network platform, where registered and premium users can draft, collaborate on, and export screenplays as part of the broader film-production workflow.</p>
+    </div>
+    </main>
+    <footer>
+        <p>&copy; <time datetime="2026">2026</time> Theron Blount. All rights reserved.</p>
+    </footer>
+</body>
+</html>
