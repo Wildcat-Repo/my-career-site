@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Audit Suite: Automated LAN Traffic Audit Trail</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about/">About</a>
+            <a href="../portfolio/">Portfolio</a>
+            <a href="../research/">Research</a>
+            <a href="../contact/">Contact</a>
+        </nav>
+    </header>
+    <main>
+    <div class="header">
+        <h1>Network Audit Suite</h1>
+        <p>Automated LAN Traffic Audit Trail for ISP Security Alert Response</p>
+    </div>
+
+    <div class="project-overview">
+        <h2>Project Overview</h2>
+        <p><strong>Objective:</strong> Design and implement a self-documenting audit trail system that proves authorized development activity on a private LAN, automatically responding to ISP security classifiers (such as Spectrum's "Secure Traffic" advisory) that flag high-concurrency encrypted sessions and modern development runtimes as suspicious.</p>
+
+        <p><strong>Problem Context:</strong> Modern software engineering environments routinely generate traffic patterns &mdash; persistent WebSocket connections, SSH tunnels for QA automation, Jupyter and database loopback sessions, concurrent encrypted package pulls &mdash; that superficially resemble the fingerprint of compromised hosts. Automated ISP monitoring cannot distinguish a QA engineer running a Selenium grid from a botnet beacon. The operational burden falls on the customer to justify normal activity.</p>
+
+        <p><strong>Solution:</strong> A distributed audit system that continuously documents which processes, ports, and outbound sessions are expected, cross-references them against a blocklist of ISP-flagged indicators, surfaces anomalies via cross-platform watchdog agents, and produces a timestamped record that can be provided to an ISP on demand.</p>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">3</div>
+                <div class="metric-label">Platform Agents</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Hourly</div>
+                <div class="metric-label">Watchdog Cadence</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Shell +<br>Python</div>
+                <div class="metric-label">Implementation</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">RFC 1918</div>
+                <div class="metric-label">LAN Scope</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architecture-container">
+        <h2>System Architecture</h2>
+        <div class="svg-container">
+        <svg viewBox="0 0 1000 600" style="width: 1000px; height: 600px;">
+            <rect width="1000" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+
+            <!-- Central Vault -->
+            <rect x="380" y="80" width="240" height="90" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="110" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1976d2">Central Audit Vault</text>
+            <text x="500" y="130" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Aggregates node reports</text>
+            <text x="500" y="148" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Runs incident detection</text>
+            <text x="500" y="163" font-family="Arial" font-size="11" text-anchor="middle" fill="#666">(Debian host, SSD-backed storage)</text>
+
+            <!-- Nodes Row -->
+            <rect x="80" y="250" width="220" height="80" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="8" ry="8"/>
+            <text x="190" y="278" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c">Linux Nodes</text>
+            <text x="190" y="298" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Collect process snapshots</text>
+            <text x="190" y="315" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">netstat / ss / journalctl</text>
+
+            <rect x="390" y="250" width="220" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="278" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">macOS Watchdog</text>
+            <text x="500" y="298" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">LaunchAgent plist</text>
+            <text x="500" y="315" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Hourly vault check</text>
+
+            <rect x="700" y="250" width="220" height="80" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="8" ry="8"/>
+            <text x="810" y="278" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#8e24aa">Android Watchdog</text>
+            <text x="810" y="298" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Termux + cron</text>
+            <text x="810" y="315" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">Push notifications</text>
+
+            <!-- Connection lines from nodes to vault -->
+            <line x1="190" y1="250" x2="440" y2="170" stroke="#666" stroke-width="2" stroke-dasharray="4,4"/>
+            <line x1="500" y1="250" x2="500" y2="170" stroke="#666" stroke-width="2" stroke-dasharray="4,4"/>
+            <line x1="810" y1="250" x2="560" y2="170" stroke="#666" stroke-width="2" stroke-dasharray="4,4"/>
+
+            <!-- Audit Pipeline Row -->
+            <rect x="80" y="400" width="840" height="100" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2" rx="8" ry="8"/>
+            <text x="500" y="430" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#8e24aa">Audit Pipeline</text>
+
+            <rect x="110" y="445" width="180" height="40" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="200" y="462" font-family="Arial" font-size="11" text-anchor="middle" fill="#333" font-weight="bold">Process &amp; Port Capture</text>
+            <text x="200" y="478" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">listening sockets, PIDs</text>
+
+            <rect x="300" y="445" width="180" height="40" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="390" y="462" font-family="Arial" font-size="11" text-anchor="middle" fill="#333" font-weight="bold">Blocklist Cross-Reference</text>
+            <text x="390" y="478" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">ISP-flagged IPs/hosts</text>
+
+            <rect x="490" y="445" width="180" height="40" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="580" y="462" font-family="Arial" font-size="11" text-anchor="middle" fill="#333" font-weight="bold">Incident Detection</text>
+            <text x="580" y="478" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">ALERT marker scan</text>
+
+            <rect x="680" y="445" width="220" height="40" fill="#e1bee7" stroke="#8e24aa" stroke-width="1" rx="4" ry="4"/>
+            <text x="790" y="462" font-family="Arial" font-size="11" text-anchor="middle" fill="#333" font-weight="bold">Notification Fan-Out</text>
+            <text x="790" y="478" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">desktop + mobile alerts</text>
+
+            <!-- Vault to pipeline -->
+            <line x1="500" y1="170" x2="500" y2="400" stroke="#666" stroke-width="2"/>
+            <polygon points="500,400 495,390 505,390" fill="#666"/>
+
+            <!-- Labels -->
+            <text x="500" y="550" font-family="Arial" font-size="13" text-anchor="middle" fill="#555" font-style="italic">Nodes push audit snapshots &rarr; Vault aggregates &rarr; Pipeline detects &amp; notifies</text>
+        </svg>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-section auth-feature">
+            <h3>&#128737; Authorized Activity Documentation</h3>
+            <ul>
+                <li><strong>Process Socket Audit:</strong> Captures persistent listeners for development runtimes (application servers, notebook kernels, local databases) with process names and parent PIDs so that each port is tied to a named, expected workload.</li>
+                <li><strong>Encrypted Tunnel Inventory:</strong> Records concurrent SSH, SCP, and MCP-over-SSH sessions used for QA automation, distinguishing legitimate outbound connections from anomalous ones.</li>
+                <li><strong>Maintenance Windows:</strong> Documents scheduled firmware update (<code>fwupd</code>) and package update (<code>apt</code>) cycles as system-legitimate traffic rather than malware update channels.</li>
+                <li><strong>Per-Node Logs:</strong> Each node publishes its audit snapshot to the vault on a regular cadence, producing a tamper-evident history.</li>
+            </ul>
+        </div>
+
+        <div class="feature-section content-feature">
+            <h3>&#128225; Cross-Platform Watchdog Agents</h3>
+            <ul>
+                <li><strong>macOS LaunchAgent:</strong> User-scope agent polls the vault hourly; raises native system notifications when a security incident is posted.</li>
+                <li><strong>Android / Termux:</strong> Mobile agent uses <code>termux-api</code> to surface high-priority alerts with vibration, ensuring off-desk awareness.</li>
+                <li><strong>Linux Nodes:</strong> Any Linux device on the LAN can act as a reporting node by running the collection script &mdash; there is no special node requirement.</li>
+                <li><strong>Failure Modes:</strong> Agents degrade silently when offline and resume polling when connectivity returns, avoiding noisy false alarms.</li>
+            </ul>
+        </div>
+
+        <div class="feature-section admin-feature">
+            <h3>&#128269; Incident Detection &amp; Reporting</h3>
+            <ul>
+                <li><strong>ALERT-marker scan:</strong> A report generator traverses all node audit files each run, looking for ALERT markers produced by the blocklist cross-reference step.</li>
+                <li><strong>Incident file:</strong> When any ALERT is found, a human-readable incident log is produced and the watchdogs fire notifications on the next polling interval.</li>
+                <li><strong>SSH surface monitoring:</strong> Each run enumerates outbound port-22 connections and validates that the remote peers are inside the LAN or in a known-good list.</li>
+                <li><strong>Deterministic output:</strong> Report output is newline-delimited and grep-friendly so that additional tools can subscribe to the audit stream without a parser.</li>
+            </ul>
+        </div>
+
+        <div class="feature-section analytics-feature">
+            <h3>&#9881;&#65039; Automation Discipline</h3>
+            <ul>
+                <li><strong>No manual steps:</strong> Audit collection, aggregation, incident detection, and notification dispatch all run on timers &mdash; no human action required for steady-state operation.</li>
+                <li><strong>Secret hygiene:</strong> SSH key-based authentication end-to-end, no passwords in scripts, vault-side <code>authorized_keys</code> under a dedicated low-privilege service account.</li>
+                <li><strong>Separation of concerns:</strong> Collection script, transport, aggregation, detection, and notification are each their own component &mdash; each can be tested and replaced independently.</li>
+                <li><strong>Offline-tolerant:</strong> Each node is authoritative for its own audit file; vault unavailability never blocks local collection.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <div class="tech-category security-tech">
+            <h3>&#128272; Collection Layer</h3>
+            <ul>
+                <li><strong>Bash + POSIX tools:</strong> <code>ss</code>, <code>netstat</code>, <code>ps</code>, <code>journalctl</code></li>
+                <li><strong>OpenSSH:</strong> Key-based node &rarr; vault transport</li>
+                <li><strong>systemd timers / cron:</strong> Scheduled collection cadence</li>
+                <li><strong>WDBLACK SSD:</strong> Vault log storage for longevity</li>
+            </ul>
+        </div>
+
+        <div class="tech-category frontend-tech">
+            <h3>&#128241; Watchdog Layer</h3>
+            <ul>
+                <li><strong>macOS:</strong> <code>launchd</code> LaunchAgent plist, user-session scope</li>
+                <li><strong>Android:</strong> Termux, <code>termux-api</code>, cronie</li>
+                <li><strong>Notification APIs:</strong> Native macOS notification center, Termux push</li>
+                <li><strong>Environment-driven config:</strong> Plist / env vars only; no hardcoded secrets</li>
+            </ul>
+        </div>
+
+        <div class="tech-category deployment-tech">
+            <h3>&#128200; Aggregation Layer</h3>
+            <ul>
+                <li><strong>Debian-based vault host:</strong> Refurbished enterprise-class workstation, SSD-backed</li>
+                <li><strong>Shell-based aggregator:</strong> <code>generate_report.sh</code> pipeline</li>
+                <li><strong>Blocklist integration:</strong> <code>spectrum_blocklist.conf</code> cross-reference</li>
+                <li><strong>Daily SSH auth review:</strong> <code>journalctl</code> + pattern matchers</li>
+            </ul>
+        </div>
+
+        <div class="tech-category rails-backend">
+            <h3>&#128202; Observability</h3>
+            <ul>
+                <li><strong>Named ALERT markers:</strong> Plain-text, machine-parseable incident signals</li>
+                <li><strong>Per-run status:</strong> Each collection cycle recomputes the current verdict</li>
+                <li><strong>Integrity check:</strong> Audit files validated before aggregation</li>
+                <li><strong>Retention:</strong> Long-lived incident history for ISP correspondence</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="implementation-highlights">
+        <h2>&#128295; Engineering Highlights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <h4>&#129504; Problem Reframing</h4>
+                <ul>
+                    <li>Inverts the default posture &mdash; instead of reacting to ISP alerts one at a time, the system maintains a continuous, evidentiary record of expected activity</li>
+                    <li>Positions the customer with documentation in hand at the moment an inquiry arrives</li>
+                    <li>Reusable template for any development environment subject to automated ISP classifiers</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128279; Composable Design</h4>
+                <ul>
+                    <li>Five independent concerns &mdash; collect, transport, aggregate, detect, notify &mdash; each implemented in isolation</li>
+                    <li>Adding a new platform agent is a single plist or cron entry; no changes to the vault</li>
+                    <li>Adding a new detection rule is a single shell function in the report generator</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128225; Cross-Platform Reach</h4>
+                <ul>
+                    <li>Linux, macOS, and Android all participate as first-class agents</li>
+                    <li>Mobile notification path ensures alerts surface even when the primary workstation is unattended</li>
+                    <li>Termux+cron on Android demonstrates that serious automation can live outside traditional desktop OSes</li>
+                </ul>
+            </div>
+            <div>
+                <h4>&#128737; Security Posture</h4>
+                <ul>
+                    <li>Key-only SSH, dedicated service account, principle-of-least-privilege on the vault</li>
+                    <li>No inline credentials in scripts &mdash; all secrets via environment or key material</li>
+                    <li>Blocklist file is version-controlled and diff-reviewable</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-impact">
+        <h2>&#127919; Project Impact</h2>
+        <p><strong>Operational Readiness:</strong> Transforms ad-hoc responses to ISP security advisories into a bounded, repeatable workflow. When a customer receives a "Secure Traffic" notice, the relevant incident-free audit history is already on disk and ready to reference.</p>
+
+        <p><strong>Portable Methodology:</strong> The architecture &mdash; central vault, node reporters, cross-platform watchdogs, blocklist cross-reference, incident fan-out &mdash; is implementation-independent. The same pattern applies to any LAN where a mix of encrypted tunnels, modern development runtimes, and automated updates would otherwise trigger false-positive alerts from external classifiers.</p>
+
+        <p><strong>Engineering Ethos:</strong> Demonstrates systems thinking: observing a recurring operational problem, identifying its root cause (asymmetric visibility between ISP and customer), and closing the loop with automation rather than manual effort.</p>
+    </div>
+    </main>
+    <footer>
+        <p>&copy; <time datetime="2026">2026</time> Theron Blount. All rights reserved.</p>
+    </footer>
+</body>
+</html>
